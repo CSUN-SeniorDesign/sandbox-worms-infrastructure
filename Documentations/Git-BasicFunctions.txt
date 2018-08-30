@@ -4,7 +4,7 @@ Assumption: Repositories' Parent Folder is in C:\Repo
 C:\Repo\SeniorDesign/sandbox-worms-infrastructure
 #################################################################################################
 
-mkdir sandbox-worms-infrastructure ##create the folder under C:\repo
+mkdir sandbox-worms-infrastructure ##create the folder under C:\repo - it can be skipped. git clone will create the folder for you
 git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure.git ## copies the files and folders from the github repository to the sandbox-worms-infrastructure folder. If the folder is not empty git will complain
 
 ###############################
