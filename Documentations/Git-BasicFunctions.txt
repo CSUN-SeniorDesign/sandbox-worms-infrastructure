@@ -1,0 +1,7 @@
+Setting up GIT repo for https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure.git
+Assumption: Repositories' Parent Folder is in C:\Repo
+C:\Repo\SeniorDesign/sandbox-worms-infrastructure
+
+mkdir sandbox-worms-infrastructure ##create the folder under C:\repo
+git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure.git ## copies the files and folders from the github repository to the sandbox-worms-infrastructure folder. If the folder is not empty git will complain
+
