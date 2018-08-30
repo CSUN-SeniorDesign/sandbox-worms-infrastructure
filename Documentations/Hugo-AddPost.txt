@@ -21,3 +21,4 @@ git add content/article/test1.md #adds test1.md specifically. if you have multip
 git status #should show your file in green text
 git commit -m "new post" #if you dont put a comment, git will complain"
 git push origin master #copies the commited files to the github repo
+hugo server -D #allows you to preview the site locally.
