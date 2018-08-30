@@ -14,6 +14,8 @@ Add new files to the folder.
 #Add files to the folder
 #On cmd go to C:\Repo\sandbox-worms-infrastructure
 
+git config --global user.name "YOUR_USERNAME"
+git config --global user.email "your_email_address@example.com"
 git status #will show new files. Red means they are new files but they have not been "added". Green means they have been "added"
 git add . #will add all files. You can also specify specific files to add.
 git status #the previously red files are now gree
