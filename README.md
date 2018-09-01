@@ -18,10 +18,22 @@ sharing credentials.
 - [x] AWS Route53
 - [x] Setup your Blog
 - [x] Generate TLS Certificates
+- [ ] AWS Secret Store
 - [x] Deploy your blog
 - [ ] Documentations : 
-	- [ ] AWS setup
-	- [ ] AWS services setup (EC2, VPC, Route53, etc)
+	- [ ] AWS Account setup
+	- [ ] AWS services setup
+		- [ ] EC2
+		- [ ] VPC 
+		- [ ] Subnet
+		- [ ] Route 53
+		- [ ] Security Groups
+	- [ ] VM Setup
+		- Services Installed
+		- Firewall Exceptions
+		- Apache Documentations (config file)
+		- SSL Documentations (config file)
+		- User Authentication
 	- [ ] AWS service diagram showing each aspect of the infrastructure
 	- [x] How to write a blog post
-	- [ ] How to deploy a new blog post
+	- [x] How to deploy a new blog post
