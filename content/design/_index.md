@@ -1,5 +1,5 @@
 +++
-title = "AWS Setup"
+title = "Design Documentations"
 description = ""
 weight = 1
 alwaysopen = true
@@ -7,6 +7,6 @@ alwaysopen = true
 
 ## AWS Diagram ##
 
-*Insert aws diagram here*
+![](https://docs.sandboxworms.me/img/aws.png)
 
 {{%children style="h2" description="true"%}}

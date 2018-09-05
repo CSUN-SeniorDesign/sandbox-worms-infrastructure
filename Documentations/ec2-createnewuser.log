@@ -1,0 +1,18 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2018.09.04 20:12:13 =~=~=~=~=~=~=~=~=~=~=~=
+sudo useradd mark -d /home/mark
+]0;ec2-user@ip-10-0-19-203:/home[ec2-user@ip-10-0-19-203 home]$ sudo vi /etc/sudoers
+.......
+ec2-user[8CALL=(ALL)[7CNOPASSWD: ALL
+john[12CALL=(ALL)[7CNOPASSWD: ALL
+yerden[10CALL=(ALL)[7CNOPASSWD: ALL
+mark[12CALL=(ALL)[7CNOPASSWD: ALL
+nick[12CALL=(ALL)[7CNOPASSWD: ALL
+
+[ec2-user@ip-10-0-19-203 home]$ sudo su mark
+
+mark@ip-10-0-19-203:~[mark@ip-10-0-19-203 ~]$ sudo mkdir .ssh
+mark@ip-10-0-19-203:~[mark@ip-10-0-19-203 ~]$ sudo chmod 700 .ssh
+mark@ip-10-0-19-203:~[mark@ip-10-0-19-203 ~]$ sudo touch .ssh/authorized_keys
+mark@ip-10-0-19-203:~[mark@ip-10-0-19-203 ~]$ sudo ch[K[Kchmod 600 .ssh/authorized_keys
+mark@ip-10-0-19-203:~[mark@ip-10-0-19-203 ~]$ sudo vi .ssh/authorized_keys
+mark@ip-10-0-19-203:~[mark@ip-10-0-19-203 ~]$ exit
