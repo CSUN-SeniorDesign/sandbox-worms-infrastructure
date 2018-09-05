@@ -1,7 +1,7 @@
 +++
 title = "How to Deploy Blog"
 description = ""
-weight = 2
+weight = 3
 # Type of content, set "slide" to display it fullscreen with reveal.js
 type="page"
 date = "2018-09-03"

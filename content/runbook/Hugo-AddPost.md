@@ -1,7 +1,7 @@
 +++
 title = "How to Add Posts"
 description = ""
-weight = 1
+weight = 2
 # Type of content, set "slide" to display it fullscreen with reveal.js
 type="page"
 date = "2018-09-03"
