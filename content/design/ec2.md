@@ -66,7 +66,7 @@ AWS network infrastructure was setup so that future high-availability for the se
 Each team member will setup a the repository locally. A pull request will need to be submitted for any change. At least 1 team member will need to do a peer review of the change and approve the merge. For tasks or issues that must be done on AWS, each team member will simulate or practice the change on their own account. When ready, changes can be done on the production account. Uploading of files will be done thru SCP.
 
 *AWS Network Infrastructure*  
-Production account will use Virginia Region. Refer to the [diagram](https://docs.sandboxworms.me/img/awsdiagram.jpg). 6 Subnets were created on their own availability zones. An AWS Internet Gateway has been setup to allow inbound and outbound access from and to the EC2 instance in the public subnets. 
+Production account will use Virginia Region. Refer to the [diagram](https://docs.sandboxworms.me/design/). 6 Subnets were created on their own availability zones. An AWS Internet Gateway has been setup to allow inbound and outbound access from and to the EC2 instance in the public subnets. 
 
 AWS Route 53 will be used as a nameserver for the Sandboxworms.me domain. 
 
