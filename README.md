@@ -1,7 +1,18 @@
 # sandbox-worms-infrastructure #
 Sandbox Worms infrastructure repo
 
+----------
+
+
+### Team websites: ###
+**Documentations:** https://docs.sandboxworms.me  
+**Blog website:** https://blog.sandboxworms.me  
+** System Diagram:** https://docs.sandboxworms.me/design/
+----------
+
 ### Deliverables ###
+
+
 
 - [x] Build a Team (T)
 - [x] Github setup
@@ -20,20 +31,20 @@ sharing credentials.
 - [x] Generate TLS Certificates
 - [ ] AWS Secret Store
 - [x] Deploy your blog
-- [ ] Documentations : 
-	- [ ] AWS Account setup
-	- [ ] AWS services setup
-		- [ ] EC2
-		- [ ] VPC 
-		- [ ] Subnet
-		- [ ] Route 53
-		- [ ] Security Groups
-	- [ ] VM Setup
+- [x] Documentations : 
+	- [x] AWS Account setup
+	- [x] AWS services setup
+		- [x] EC2
+		- [x] VPC 
+		- [x] Subnet
+		- [x] Route 53
+		- [x] Security Groups
+	- [x] VM Setup
 		- Services Installed
 		- Firewall Exceptions
 		- Apache Documentations (config file)
 		- SSL Documentations (config file)
 		- User Authentication
-	- [ ] AWS service diagram showing each aspect of the infrastructure
+	- [x] AWS service diagram showing each aspect of the infrastructure
 	- [x] How to write a blog post
 	- [x] How to deploy a new blog post
