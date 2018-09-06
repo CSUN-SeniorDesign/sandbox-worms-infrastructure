@@ -14,6 +14,7 @@ lastmodifierdisplayname = ""
 # LastModifier's Email
 lastmodifieremail = ""
 tags = ["aws", "vpc", "network", "design"]
+draft = true
 +++
 
 ----------
