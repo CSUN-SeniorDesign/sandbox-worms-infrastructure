@@ -2,3 +2,5 @@
 /themes
 terraform/.terraform
 terraform.tfvars
+terraform.tfstate.backup
+terraform.tfstate
