@@ -4,3 +4,8 @@ terraform/.terraform
 terraform.tfvars
 terraform.tfstate.backup
 terraform.tfstate
+.terraform
+*.backup
+*.tfstate
+credential*.auto.tfvars
+credential-backend.auto.tfvars
