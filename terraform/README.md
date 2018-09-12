@@ -26,6 +26,7 @@ terraform init -backend-config=credential-backend.auto.tfvars
 terraform plan -var-file=backend.tfvars
 
 second round
+
 terraform init
 terraform apply
 terraform init -backend-config=credential-backend.auto.tfvars -backend-config="../module/backend.tf" #didnt work
@@ -37,3 +38,12 @@ terraform plan
 
 \#john on laptop
 terraform init -backend-config=credential-backend.auto.tfvars -backend-config=backend.auto.tfvars
+
+
+\#third round
+rename backend.tf to backend.tf1
+terraform init
+terraform apply
+rename backend.tf1 to backend.tf
+terraform init -backend-config=credential-backend.auto.tfvars -backend-config=backend.auto.tfvars
+

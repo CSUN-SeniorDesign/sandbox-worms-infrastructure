@@ -1,5 +1,5 @@
-bucket = "sandboxworms-rstate-0911218-22"
-dynamodb_table = "sandboxworms-lockdb-09112018-22"
+bucket = "sandboxworms-rstate-0911218-24"
+dynamodb_table = "sandboxworms-lockdb-09112018-24"
 key = "terraform.tfstate"
 profile = "terraform"
 region = "us-east-1"
