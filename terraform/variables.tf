@@ -1,12 +1,13 @@
-locals {
+/*locals {
   operators = [
     "aubrey.nigoza",
     "john",
 	"nick",
 	"yerden",
-	"mark"
+	"mark",
+	"terraform"
   ]
-}
+}*/
 
 variable "bucket" {
   description = "AWS S3 Bucket name for Terraform state"
@@ -23,3 +24,6 @@ variable "profile" {
 variable "region" {
   description = "AWS Region"
 }
+variable "aws_access_key" {}
+
+variable "aws_secret_key" {}

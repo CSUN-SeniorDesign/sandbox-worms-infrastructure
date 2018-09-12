@@ -1,5 +1,0 @@
-bucket = "sandboxworms-tf-state-0911"
-dynamodb_table = "sandboxworms-lockdb-09112018"
-key = "tf-prod/terraform.tfstate"
-profile = "terraform"
-region = "us-east-1"

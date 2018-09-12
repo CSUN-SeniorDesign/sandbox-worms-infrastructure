@@ -1,7 +1,12 @@
+provider "aws" {
+  access_key = "${var.aws_access_key}"
+  secret_key = "${var.aws_secret_key}"
+  region     = "${var.region}"
+}
 # KMS Key
 
 resource "aws_kms_key" "tf_enc_key" {
-  count = "${var.bootstrap}"
+  #count = "${var.bootstrap}"
 
   description             = "Global Terraform state encryption key"
   deletion_window_in_days = 30
@@ -14,10 +19,9 @@ resource "aws_kms_key" "tf_enc_key" {
 # S3 Bucket
 
 resource "aws_s3_bucket" "terraform_state" {
-  count = "${var.bootstrap}"
+  #count = "${var.bootstrap}"
 
   bucket = "${var.bucket}"
-  #acl    = "private"
   #acl    = "private"
 
   versioning {
@@ -47,7 +51,7 @@ resource "aws_s3_bucket" "terraform_state" {
   }
 }
 
-# S3 Bucket Policy
+/*# S3 Bucket Policy
 
 data "aws_iam_user" "operators" {
   count = "${length(var.operators)}"
@@ -75,16 +79,16 @@ data "template_file" "terraform_state_policy" {
 }
 
 resource "aws_s3_bucket_policy" "terraform_state" {
-  count = "${var.bootstrap}"
+  #count = "${var.bootstrap}"
 
   bucket = "${aws_s3_bucket.terraform_state.id}"
   policy = "${data.template_file.terraform_state_policy.rendered}"
-}
+}*/
 
 # DynamoDB
 
 resource "aws_dynamodb_table" "terraform_statelock" {
-  count = "${var.bootstrap}"
+  #count = "${var.bootstrap}"
 
   name           = "${var.dynamodb_table}"
   read_capacity  = 1
