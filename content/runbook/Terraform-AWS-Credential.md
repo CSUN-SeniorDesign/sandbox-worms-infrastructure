@@ -31,8 +31,8 @@ Securely save and specify AWS Access Keys on terraform config
 
 ## Instructions ##
 
-1. Add terraform.tfvars on .gitignore  
-2. Add to one of the .tf files  
+1. Add terraform.tfvars on .gitignore  (one time only)
+2. Add to one of the .tf files  (one time only)
 
 
 		provider "aws" {   

@@ -7,3 +7,5 @@ terraform.tfstate
 .terraform
 *.backup
 *.tfstate
+credential*.auto.tfvars
+credential-backend.auto.tfvars
