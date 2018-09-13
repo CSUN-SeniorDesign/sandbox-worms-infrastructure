@@ -16,6 +16,11 @@ variable "region" {
 variable "aws_access_key" {}
 
 variable "aws_secret_key" {}
+
+variable "vpc_id" {
+  description = "AWS VPC ID"
+  default = "vpc-02a9e259e7acb0d5f"
+}
 variable "public1" {
   default = "10.0.16.0/22"
 }
@@ -26,11 +31,16 @@ variable "public3" {
   default = "10.0.48.0/22"
 }
 variable "private1" {
-  default = "10.0.64.0/22"
+  default = "10.0.64.0/20"
 }
 variable "private2" {
-  default = "10.0.80.0/22"
+  default = "10.0.80.0/20"
 }
 variable "private3" {
-  default = "10.0.96.0/22"
+  default = "10.0.96.0/20"
 }
+
+/*variable "privatesubnets" {
+  cidr_blocks = ["${var.private1}", "${var.private2}","${var.private3}" ]
+  
+}*/

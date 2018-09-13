@@ -112,7 +112,7 @@ resource "aws_route_table" "natted" {
 */
 
 # SECURITY GROUPS #
-
+/*
 resource "aws_security_group" "NATSG" {
   name = "natsg"
   vpc_id = "${data.aws_vpc.selected.id}"
@@ -127,4 +127,4 @@ resource "aws_security_group" "NATSG" {
   }
   
 }
-
+*/
