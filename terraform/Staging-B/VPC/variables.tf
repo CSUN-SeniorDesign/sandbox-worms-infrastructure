@@ -40,7 +40,7 @@ variable "private3" {
   default = "10.0.96.0/20"
 }
 
-variable "privatesubnets" {
+/*variable "privatesubnets" {
   cidr_blocks = ["${var.private1}", "${var.private2}","${var.private3}" ]
   
-}
+}*/

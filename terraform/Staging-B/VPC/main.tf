@@ -11,6 +11,13 @@ data "aws_vpc" "selected" {
   id = "${var.vpc_id}"
 }
 
+data "aws_subnet" "privatesub" {
+  tags {
+    subnettype = "Private"
+  }
+  
+}
+
 ##################################################################################
 # RESOURCES
 ##################################################################################
@@ -34,6 +41,9 @@ resource "aws_subnet" "private1" {
   vpc_id = "${data.aws_vpc.selected.id}"
   map_public_ip_on_launch = "false"
   availability_zone = "${data.aws_availability_zones.available.names[0]}" 
+  tags {
+    subnettype = "Private"
+  }
   
 }
 
@@ -48,6 +58,9 @@ resource "aws_subnet" "private2" {
   vpc_id = "${data.aws_vpc.selected.id}"
   map_public_ip_on_launch = "false"
   availability_zone = "${data.aws_availability_zones.available.names[1]}" 
+  tags {
+    subnettype = "Private"
+  }
 }
 
 resource "aws_subnet" "public3" {
@@ -61,6 +74,9 @@ resource "aws_subnet" "private3" {
   vpc_id = "${data.aws_vpc.selected.id}"
   map_public_ip_on_launch = "false"
   availability_zone = "${data.aws_availability_zones.available.names[2]}" 
+  tags {
+    subnettype = "Private"
+  }
 }
 
 # ROUTING #
@@ -106,7 +122,7 @@ resource "aws_security_group" "NATSG" {
     from_port = 80
     to_port = 80
     protocol = "tcp"
-    cidr_blocks = "${var.privatesubnets}"
+    cidr_blocks = "${data.aws_subnet.privatesub.subnet_id}"
 
   }
   
