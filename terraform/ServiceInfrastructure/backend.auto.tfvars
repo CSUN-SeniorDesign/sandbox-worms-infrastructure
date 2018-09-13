@@ -1,0 +1,5 @@
+bucket = "sandboxworms-rstate-0911218-24"
+dynamodb_table = "sandboxworms-lockdb-09112018-24"
+key = "terraformServiceInfra.tfstate"
+profile = "terraform"
+region = "us-east-1"
