@@ -10,35 +10,40 @@ creatordisplayname = "John Vinuya"
 # Creator's Email
 creatoremail = "johnphilip.vinuya.778@my.csun.edu"
 # LastModifier's Display name
-lastmodifierdisplayname = ""
+lastmodifierdisplayname = " Aubrey Nigoza"
 # LastModifier's Email
-lastmodifieremail = ""
+lastmodifieremail = "aubrey.nigoza.34@my.csun.edu"
 tags = ["aws", "vpc", "network", "design"]
 +++
 
 ----------
 **Date:** 9/4/2018 8:53:22 PM  
-**Author(s):** [John Vinuya](mailto:johnphilip.vinuya.778@my.csun.edu)  
+**Author(s):** [John Vinuya](mailto:johnphilip.vinuya.778@my.csun.edu) , [Aubrey Nigoza](mailto:aubrey.nigoza.34@my.csun.edu)
 **Reviewer(s):**  
 **Approver(s):**  
-**Revision Number:** 1  
+**Revision Number:** 2   
 **Status:**  
 
 ----------
 ***Executive Summary:***  
-The Sandboxworms established Virtual Private Cloud is the shared computing resource/virtual networking environment used for the Sandboxworms organization. It is, by extension, used for any EC2 instances created by Sandboxworms members for various projects.
+The Sandboxworms established Virtual Private Cloud is the shared computing resource/virtual networking environment used for the Sandboxworms organization. It is, by extension, used for any EC2 instances created by Sandboxworms members for various projects. For the purposes of Team SandboxWorms, VPC also relates to the terraform environment used to create and modify various AWS resources related to VPC.
 
 ***Goals:***  
+
 - Create VPC using custom options or Wizard
-- Create Internet Gateway or Elastic IP
-- Allocate Subnets
-- Configure and Link Route Tables
+- Create Other VPC related resources using terraform:
+	- Internet Gateway
+	- Subnets
+	- Route Tables
+	- Security Groups
+	- Elastic IP
+	- NAT instances
 
 ***Background:***  
 The VPC is to have 3 public subnets with 1024 hosts per subnets and 3 private subnets with 4096 per subnet. Each subnet must also be in a different availability zone. Two route tables must be made, one for public subnets and one for private subnets as well as one Internet Gateway attached to the public subnet routing table.
 
 ***High-Level Design:***     
-In setting up the VPC, Amazon Web Services will be used to create the virtual networking environment, the allocation of the subnet and the route tables are configured on AWS as well.
+In setting up the VPC, Amazon Web Services GUI Console will be used to create it. Terraform will be used to create every other resources. 3 pairs of private and public subnets will be created. Each pair will be on its own availability zone. 
 
 ***Detailed Design:***  
 *Team Members Workflow:*  
@@ -48,5 +53,5 @@ Before starting any EC2 instance, the VPC must be chosen during instance configu
 Production account will use Virginia Region. Refer to the [diagram](https://docs.sandboxworms.me/design/). 6 Subnets were created on their own availability zones. An AWS Internet Gateway has been setup to allow inbound and outbound access from and to the EC2 instance in the public subnets. 
 
 ***Alternatives Considered:***  
-An elastic IP address can be used in place of the allocated IGW provided by AWS. It would also create a NAT Gateway and provide a route table containing another IGW for the default VPC. 
+
 
