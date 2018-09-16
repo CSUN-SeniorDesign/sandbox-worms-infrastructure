@@ -74,6 +74,7 @@ Setup a consistent ansible controller across different team members
 32. sudo pip install httplib2
 33. sudo pip install six
 
+
 ### Ansible Configuration ###
 1. Configure environment variable for AWS
 
@@ -104,16 +105,23 @@ Setup a consistent ansible controller across different team members
 			D3ERj//iNBThNaxRENaFtqcvYjkgQ9Cm ....
 			-----END RSA PRIVATE KEY-----
 			chown anigoza aubrey-temp.pem
+			chmod 400 aubrey-temp.pem
+
 
 
 5. ./ec2.py -> should return inventory
 6. ansible -m ping tag_Name_Aubrey01 -u ec2-user -> tag_*tagname*_*tagvalue*
+7. ansible  -m ping all -u ec2-user -> -vvv debugging
+
 
 ### Running First Playbook ###
-	ansible-playbook -i /etc/ansible/ec2.py --limit "tag_Name_Aubrey01"  httpd.yml
+	ansible-playbook -i /etc/ansible/ec2.py --limit "tag_Type_WebServer"  httpd.yml
 
-
-
+### Troubleshooting ###
+- ppk must be converted to pem
+- environment variables must be added every reboot
+- ssh-agent must be redone
+- edit .ssh/config with bastion host public ip
 ### Useful Links ###
 
 
