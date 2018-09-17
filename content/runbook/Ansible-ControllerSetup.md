@@ -150,3 +150,46 @@ Setup a consistent ansible controller across different team members
 - https://medium.com/@dhoeric/ansible-dynamic-inventory-with-aws-ec2-80d075fcf430
 - https://www.redhat.com/en/blog/system-administrators-guide-getting-started-ansible-fast
 - https://docs.ansible.com/ansible/2.4/become.html
+
+
+
+
+#####ubuntu setup####
+1. Install latest server
+2. server snaps to add:
+	1. powershell
+	2. aws-cli
+	3. amazon-ssm-agent
+4. sudo add apt-repository universe
+5. sudo apt-get update
+5. sudo apt-update
+6. sudo apt-upgrade
+7. follow ansible
+8. sudo snap install hugo --channel=extended
+9. curl -L https://github.com/aubreynigoza.keys >> .ssh/authorized_keys
+10. chmod 700 .ssh/authorized_keys
+
+Copy private key to controller:
+1. vi ~/.ssh/id_rsa
+2. paste private key
+3. save it
+4. chmod 400 .ssh/id_rsa
+
+Start ssh agent
+
+1. eval \`ssh-agent\`
+2. ssh-add ~/.ssh/id_rsa or ssh-add 
+
+Clone Repos
+1. cd ~
+2. mkdir repo
+3. cd repo
+4. git config --global user.name "aubreynigoza"
+5. git config --global user.email "aubrey.nigoza.34@my.csun.edu"
+5. git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure.git
+6. cd sandbox-worms-infrastructure
+7. git remote set-url origin git@github.com:CSUN-SeniorDesign/sandbox-worms-infrastructure.git
+8. Repeat for blog
+9. For blog, clone the theme folder as well:   https://github.com/Lednerb/bilberry-hugo-theme.git
+
+
