@@ -73,6 +73,24 @@ Setup a consistent ansible controller across different team members
 31. sudo pip install Jinja2
 32. sudo pip install httplib2
 33. sudo pip install six
+34. sudo yum install git
+35. sudo yum install npm #for installing postcss-cli which is required for hugo
+
+### Hugo Install ###
+1. Visit this website: https://copr.fedorainfracloud.org/coprs/daftaupe/hugo/ 
+2. Copy the text of the EPEL for CENTOS7 (this is to add the repo)
+3. sudo yum update
+4. sudo yum install hugo
+5. 
+
+### Git Configuration ###
+1. Create repo directory on any directory
+2. Clone our repositories
+
+		mkdir repo
+		cd repo
+		git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure.git
+		git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-blog.git
 
 
 ### Ansible Configuration ###
