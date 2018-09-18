@@ -16,3 +16,6 @@ variable "region" {
 variable "aws_access_key" {}
 
 variable "aws_secret_key" {}
+variable "sandboxworms_group" {
+  default = "Group_Members"
+}

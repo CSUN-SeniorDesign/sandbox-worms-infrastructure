@@ -1,0 +1,20 @@
+resource "aws_key_pair" "key_aubrey" {
+  key_name   = "proj0_aubrey"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCeFcSey0jWRF7KKZkI3d4IjzcQFQGjjjUOYKQKrUiUJLDlfWs9O9bWq13eo4m0sGh3ZCti2x6HYF3BDqu2m9+8QJ79jhg7C1CgATBMEjJn3XcLPwC9urKZJPguvc0dUt91GNtZWUh6UnOnhnzDcnrRc5jOh2ib/dlHPPl8JODs93vCQP7LAOFn/X3PwU+VWJu7VDOrzpS3CghkJ1GlmevyqdFFunST4u++no3DBalaRaP92r2oVNHOP07XqN6i3Sm4zcQSr9bVcABvKqC4Ii18PL3FjsAgTiCBn6URNu4xkdBUrZUAyxnzwQROfe/MFGrh8i0sea3EOa60h8Y39tuZ"
+}
+resource "aws_key_pair" "key_john" {
+  key_name   = "john"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCRqEw0GdCBe/+lnkY1cpeITeAwP49bEUWwNpllJLjrd0FiaJxJ67P/UoGGfFfM8mSP+d74pTInuzFlBeNr7LQrCf55cbX9JitY+FBaTLJVkkS1l7kUitD2twc9PI8ygk5LqITbYR6p9QM5rfA5ZWRUEv7/lCJ9tAPiZaaIPdaXoxb7nCUL7xTcktzUd+DTAjDCa63Wu81svJvqr8+5Ra4qr2wkHFb/MkbVfzwWVDvn8AasIiqcHWdFFTfL/6K6K3XUJ+1ZZECJbeHuYOPvqxFtwxLfWCMgqFWVqx5N9+HEPpZ8WmeIKAC+JF88tP9HNkMm+34w+IVAJVE82kyt8HSP"
+}
+resource "aws_key_pair" "key_nick" {
+  key_name   = "nick"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCoPdG4GOOlrms3Hi8YoJtm878aXD2NPFvhbNDVBxt8OVX2D8nFBmGrSsCZej+4MWUqzgEKMXzMtTf7qHCYbvRlwOMXHmPKT+dALsh2LRWQk5fpPEIAHE+Nsb0OuAFylVtheJowyrLczhoeI9jkAGXCrT8VOq8WC3+vYPNTaA0sBUKm1hbIYrkM90Bdy1AgSRXlkwjUtqVBrAUUJSBw9YesphaaLN0W1oEWftor8DsM7BoQN58gIUw5rIEWjUaruF8azlURvvzV8C9cLTfa3E+uRK2nMWVda9nKV4Z8XT6J1LkQjv7vyTNr4yhInOuz4Dt/9D0UGDrG61IVnP5dJXj/"
+}
+resource "aws_key_pair" "key_mark" {
+  key_name   = "mark"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCRqEw0GdCBe/+lnkY1cpeITeAwP49bEUWwNpllJLjrd0FiaJxJ67P/UoGGfFfM8mSP+d74pTInuzFlBeNr7LQrCf55cbX9JitY+FBaTLJVkkS1l7kUitD2twc9PI8ygk5LqITbYR6p9QM5rfA5ZWRUEv7/lCJ9tAPiZaaIPdaXoxb7nCUL7xTcktzUd+DTAjDCa63Wu81svJvqr8+5Ra4qr2wkHFb/MkbVfzwWVDvn8AasIiqcHWdFFTfL/6K6K3XUJ+1ZZECJbeHuYOPvqxFtwxLfWCMgqFWVqx5N9+HEPpZ8WmeIKAC+JF88tP9HNkMm+34w+IVAJVE82kyt8HSP"
+}
+resource "aws_key_pair" "key_yerden" {
+  key_name   = "yerden"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCU67YvA72Ky6n+7SGXV0Ec/QkAW3l46Xzuk35bMDV5FTMgpPIr8S9TO6wnxyJ75qtB+p3bdCBizPIfV1aZMraD1HFcBN4siyBJLu7+OEct32ieBljpR3o2headCW823WjZdcHMnGhV5ZVJ9xfJclawVy/a9IWo4qu5Xd2B9FS1dJNfjmIfHCTEYIa+df+O7hGI6ULARhwvVT3K05ZrJJJ64fUQdns+LlJyVssvobNPo+zKlHEL/wOE4/BvuBFUxMNvM4PglC/MlLxPitAh+nCdVRFdCO7ApnEC0yW25Q0mnhBtIT6KxHQEYFRV2hG9GLpAtef7pZI5hILp9MjFRflH"
+}

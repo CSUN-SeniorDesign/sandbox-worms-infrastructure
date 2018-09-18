@@ -47,3 +47,11 @@ terraform apply
 rename backend.tf1 to backend.tf
 terraform init -backend-config=credential-backend.auto.tfvars -backend-config=backend.auto.tfvars
 
+
+
+Useful URLS:
+https://www.terraform.io/docs/providers/aws/r/route_table.html
+
+terraform graph | dot -Tpng > graph.png
+
+https://www.terraform.io/docs/providers/aws/r/route_table.html#egress_only_gateway_id

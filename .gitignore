@@ -9,3 +9,4 @@ terraform.tfstate
 *.tfstate
 credential*.auto.tfvars
 credential-backend.auto.tfvars
+credential*
