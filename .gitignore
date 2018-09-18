@@ -12,3 +12,4 @@ credential-backend.auto.tfvars
 /certificates
 www_sandboxworms_me.crt
 sandboxwormsKey.key
+credential*
