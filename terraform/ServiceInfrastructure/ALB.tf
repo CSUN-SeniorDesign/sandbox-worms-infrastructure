@@ -1,3 +1,5 @@
+# https://blog.valouille.fr/post/2018-03-22-how-to-use-terraform-to-deploy-an-alb-application-load-balancer-with-multiple-ssl-certificates/
+
 # CERTIFICATES
 
 resource "aws_iam_server_certificate" "sandboxwormscert" {
@@ -8,7 +10,7 @@ resource "aws_iam_server_certificate" "sandboxwormscert" {
 
 # APPLICATION LOAD BALANCER
 
-resource "aws_lb" "sandbox-ALB" {
+resource "aws_alb" "sandbox-ALB" {
   name               = "sandbox-ALB"
   internal           = false
   load_balancer_type = "application"
@@ -20,30 +22,31 @@ resource "aws_lb" "sandbox-ALB" {
 
 # TARGET GROUPS
 
-resource "aws_lb_target_group" "targ" {
-  name     = "Sandbox_Target"
+resource "aws_lb_target_group" "sandbox-target" {
+  name     = "sandbox-target"
   port     = 80
   protocol = "HTTPS"
   vpc_id   = "vpc-02a9e259e7acb0d5f | Project 0"
+  
 }
 
 
-/*
+
 resource "aws_alb_target_group_attachment" "web02-assoc" {
-  target_group_arn = "${aws_alb_target_group.targ.arn}"
+  target_group_arn = "${aws_lb_target_group.sandbox-target.arn}"
   target_id        = "${aws_instance.web02.id}"
   port             = 80
 }
 resource "aws_alb_target_group_attachment" "web01-assoc" {
-  target_group_arn = "${aws_alb_target_group.targ.arn}"
+  target_group_arn = "${aws_lb_target_group.sandbox-target.arn}"
   target_id        = "${aws_instance.web01.id}"
   port             = 80
 }
-*/
+
 
 
 # LISTENERS
-/*
+
 resource "aws_alb_listener" "alb-listener" {
 	load_balancer_arn	=	"${aws_alb.sandbox-ALB.arn}"
 	port			=	"443"
@@ -51,8 +54,8 @@ resource "aws_alb_listener" "alb-listener" {
 	ssl_policy		=	"ELBSecurityPolicy-2016-08"
 	certificate_arn		=	"${aws_iam_server_certificate.sandboxwormscert.arn}"
 	default_action {
-		target_group_arn	=	"${aws_alb_target_group.targ.arn}"
+		target_group_arn	=	"${aws_lb_target_group.sandbox-target.arn}"
 		type			=	"forward"
 	}
 }
-*/
+
