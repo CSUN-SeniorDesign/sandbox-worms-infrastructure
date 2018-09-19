@@ -12,6 +12,8 @@
       become: yes
       with_items:
         - httpd
+- hosts: all
+  tasks:
     - name: add authorized keys
       authorized_key:
         user: ec2-user
