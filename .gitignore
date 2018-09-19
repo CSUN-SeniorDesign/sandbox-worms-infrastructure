@@ -9,3 +9,5 @@ terraform.tfstate
 *.tfstate
 credential*.auto.tfvars
 credential-backend.auto.tfvars
+*.retry
+blog.tar.gz
