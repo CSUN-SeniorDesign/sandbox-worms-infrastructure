@@ -16,7 +16,7 @@
       authorized_key:
         user: ec2-user
         state: present
-        key: {{ item}}
+        key: "{{ item }}"
       with_items:
         - https://github.com/anigoza-card.keys
         - https://github.com/aubreynigoza.keys
