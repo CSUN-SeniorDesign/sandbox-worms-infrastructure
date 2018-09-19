@@ -16,3 +16,6 @@ variable "region" {
 variable "aws_access_key" {}
 
 variable "aws_secret_key" {}
+variable "aws_key_name" {
+  default = "proj0_aubrey"
+}
