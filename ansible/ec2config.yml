@@ -1,0 +1,49 @@
+---
+#Setup LAMP Stack
+- hosts: tag_Type_WebServer
+  tasks:
+    - name: install Apache
+      become: yes
+      yum: name={{ item }} state=present
+      with_items:
+        - httpd
+    - name: start services
+      service: name={{ item }} state=started enabled=yes
+      become: yes
+      with_items:
+        - httpd
+- hosts: all
+  tasks:
+    - name: add authorized keys
+      authorized_key:
+        user: ec2-user
+        state: present
+        key: "{{ item }}"
+      with_items:
+        - https://github.com/anigoza-card.keys
+        - https://github.com/aubreynigoza.keys
+        - https://github.com/nky9514.keys
+        - https://github.com/jpvinuya.keys
+- hosts: tag_Type_BastionHost
+  tasks:
+    - name: install epel-release repo for fail2ban
+      become: yes
+      yum:
+        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
+        state: present
+    - name: Import EPE GPG Key
+      become: yes
+      rpm_key:
+        key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}
+        state: present
+        #- name: upgrade all packages
+        #become: yes
+        #yum: name='*'  state=latest
+    - name: install Fail2Ban
+      become: yes
+      yum: name={{ item }} state=present  update_cache=yes
+      with_items:
+        - fail2ban
+    - name: start services
+      become: yes
+      service: name=fail2ban state=started enabled=yes
