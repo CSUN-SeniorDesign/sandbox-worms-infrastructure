@@ -1,0 +1,17 @@
+---
+
+- name: run the playbook tasks on the localhost
+  hosts: localhost
+  become: yes
+  tasks:
+
+  - name: print out the hostname of target
+    command: hostname
+
+  - name: build static html
+    shell: |
+     rm ~/repo/sandbox-worms-blog/public -r
+     ./buildsite
+    args:
+     executable: /bin/bash
+  
