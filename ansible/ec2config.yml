@@ -26,6 +26,24 @@
         - https://github.com/jpvinuya.keys
 - hosts: tag_Type_BastionHost
   tasks:
+    - name: install epel-release repo for fail2ban
+      become: yes
+      yum:
+        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
+        state: present
+    - name: Import EPE GPG Key
+      become: yes
+      rpm_key:
+        key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}
+        state: present
+        #- name: upgrade all packages
+        #become: yes
+        #yum: name='*'  state=latest
     - name: install Fail2Ban
       become: yes
-      yum: name=fail2ban state=present
+      yum: name={{ item }} state=present  update_cache=yes
+      with_items:
+        - fail2ban
+    - name: start services
+      become: yes
+      service: name=fail2ban state=started enabled=yes
