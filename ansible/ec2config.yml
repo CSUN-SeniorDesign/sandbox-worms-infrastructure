@@ -24,3 +24,8 @@
         - https://github.com/aubreynigoza.keys
         - https://github.com/nky9514.keys
         - https://github.com/jpvinuya.keys
+- hosts: tag_Type_BastionHost
+  tasks:
+    - name: install Fail2Ban
+      become: yes
+      yum: name=fail2ban state=present
