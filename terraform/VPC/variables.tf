@@ -17,10 +17,10 @@ variable "aws_access_key" {}
 
 variable "aws_secret_key" {}
 
-variable "vpc_id" {
-  description = "AWS VPC ID"
-  default = "vpc-02a9e259e7acb0d5f"
-}
+/*variable "vpc_id" {
+  description = "Project 0 VPC ID"
+ # default = "vpc-07caef54e0672ca4b"
+}*/
 variable "public1" {
   default = "10.0.16.0/22"
 }
@@ -44,3 +44,9 @@ variable "private3" {
   cidr_blocks = ["${var.private1}", "${var.private2}","${var.private3}" ]
   
 }*/
+#variable "private_subnet_cidr" {}
+#variable "vpc_cidr" {}
+variable "aws_key_name" {
+  default = "john"
+}
+

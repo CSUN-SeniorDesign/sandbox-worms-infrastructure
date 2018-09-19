@@ -73,6 +73,25 @@ Setup a consistent ansible controller across different team members
 31. sudo pip install Jinja2
 32. sudo pip install httplib2
 33. sudo pip install six
+34. sudo yum install git
+35. sudo yum install npm #for installing postcss-cli which is required for hugo
+
+### Hugo Install ###
+1. Visit this website: https://copr.fedorainfracloud.org/coprs/daftaupe/hugo/ 
+2. Copy the text of the EPEL for CENTOS7 (this is to add the repo)
+3. sudo yum update
+4. sudo yum install hugo
+5. 
+
+### Git Configuration ###
+1. Create repo directory on any directory
+2. Clone our repositories
+
+		mkdir repo
+		cd repo
+		git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure.git
+		git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-blog.git
+
 
 ### Ansible Configuration ###
 1. Configure environment variable for AWS
@@ -104,16 +123,23 @@ Setup a consistent ansible controller across different team members
 			D3ERj//iNBThNaxRENaFtqcvYjkgQ9Cm ....
 			-----END RSA PRIVATE KEY-----
 			chown anigoza aubrey-temp.pem
+			chmod 400 aubrey-temp.pem
+
 
 
 5. ./ec2.py -> should return inventory
 6. ansible -m ping tag_Name_Aubrey01 -u ec2-user -> tag_*tagname*_*tagvalue*
+7. ansible  -m ping all -u ec2-user -> -vvv debugging
+
 
 ### Running First Playbook ###
-	ansible-playbook -i /etc/ansible/ec2.py --limit "tag_Name_Aubrey01"  httpd.yml
+	ansible-playbook -i /etc/ansible/ec2.py --limit "tag_Type_WebServer"  httpd.yml
 
-
-
+### Troubleshooting ###
+- ppk must be converted to pem
+- environment variables must be added every reboot
+- ssh-agent must be redone
+- edit .ssh/config with bastion host public ip
 ### Useful Links ###
 
 
@@ -124,3 +150,46 @@ Setup a consistent ansible controller across different team members
 - https://medium.com/@dhoeric/ansible-dynamic-inventory-with-aws-ec2-80d075fcf430
 - https://www.redhat.com/en/blog/system-administrators-guide-getting-started-ansible-fast
 - https://docs.ansible.com/ansible/2.4/become.html
+
+
+
+
+#####ubuntu setup####
+1. Install latest server
+2. server snaps to add:
+	1. powershell
+	2. aws-cli
+	3. amazon-ssm-agent
+4. sudo add apt-repository universe
+5. sudo apt-get update
+5. sudo apt-update
+6. sudo apt-upgrade
+7. follow ansible
+8. sudo snap install hugo --channel=extended
+9. curl -L https://github.com/aubreynigoza.keys >> .ssh/authorized_keys
+10. chmod 700 .ssh/authorized_keys
+
+Copy private key to controller:
+1. vi ~/.ssh/id_rsa
+2. paste private key
+3. save it
+4. chmod 400 .ssh/id_rsa
+
+Start ssh agent
+
+1. eval \`ssh-agent\`
+2. ssh-add ~/.ssh/id_rsa or ssh-add 
+
+Clone Repos
+1. cd ~
+2. mkdir repo
+3. cd repo
+4. git config --global user.name "aubreynigoza"
+5. git config --global user.email "aubrey.nigoza.34@my.csun.edu"
+5. git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure.git
+6. cd sandbox-worms-infrastructure
+7. git remote set-url origin git@github.com:CSUN-SeniorDesign/sandbox-worms-infrastructure.git
+8. Repeat for blog
+9. For blog, clone the theme folder as well:   https://github.com/Lednerb/bilberry-hugo-theme.git
+
+
