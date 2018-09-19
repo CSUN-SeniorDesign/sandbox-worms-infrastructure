@@ -1,0 +1,24 @@
+---
+#Setup LAMP Stack
+- hosts: tag_Type_WebServer
+  tasks:
+    - name: install Apache
+      become: yes
+      yum: name={{ item }} state=present
+      with_items:
+        - httpd
+    - name: start services
+      service: name={{ item }} state=started enabled=yes
+      become: yes
+      with_items:
+        - httpd
+    - name: add authorized keys
+      authorized_key:
+        user: ec2-user
+        state: present
+        key: {{ item}}
+      with_items:
+        - https://github.com/anigoza-card.keys
+        - https://github.com/aubreynigoza.keys
+        - https://github.com/nky9514.keys
+        - https://github.com/jpvinuya.keys

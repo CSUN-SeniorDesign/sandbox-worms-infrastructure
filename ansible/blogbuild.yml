@@ -1,17 +1,36 @@
 ---
 
-- name: run the playbook tasks on the localhost
-  hosts: localhost
-  become: yes
-  tasks:
+#- name: run the playbook tasks on the localhost
+#  hosts: localhost
+#  become: yes
+#  tasks:
+#
+#  - name: print out the hostname of target
+#    command: hostname
+#
+#  - name: build static html
+#    shell: |
+#     rm ~/repo/sandbox-worms-blog/public -r
+#     ./buildsite
+#    args:
+#     executable: /bin/bash
+#Deploy blog
+- hosts: tag_Type_WebServer
+  tasks:  
+      - name: deploy index.html
+      become: yes
+      unarchive:
+        src: ~/repo/sandbox-worms-infrastructure/ansible/blog.tar.gz
+        #src: /etc/ansible/blog.tar.gz
+        dest: /var/www/html
+        extra_opts: [--strip-components=1]
+        selevel: s0
+        setype: httpd_sys_content_t
+        owner: apache
+        group: apache
+        mode: 0755
+        list_files: yes
+      #copy: src=/etc/ansible/blog.zip dest=/var/www/html/index.html
+      #copy: src=/etc/ansible/blog/ dest=/var/www/html/ remote_src=yes directory_mode=yes
+      #command: cp -r /etc/ansible/blog/* /var/www/html/
 
-  - name: print out the hostname of target
-    command: hostname
-
-  - name: build static html
-    shell: |
-     rm ~/repo/sandbox-worms-blog/public -r
-     ./buildsite
-    args:
-     executable: /bin/bash
-  
