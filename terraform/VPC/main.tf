@@ -16,12 +16,6 @@ data "aws_vpc" "selected" {
   }
 }
 
-/*data "aws_subnet" "privatesub" {
-  filter {
-    name = "tag:subnettype"
-    values = ["Private"]
-  }
-}*/#no need because subnet doesnt exist yet or is not preexisting
 
 ##################################################################################
 # RESOURCES
@@ -129,7 +123,6 @@ resource "aws_route_table" "privatenet_nat" {
   vpc_id = "${data.aws_vpc.selected.id}"
   route {
     cidr_block = "0.0.0.0/0"
-    #gateway_id = "${aws_network_interface.natinstance_eth0.id}" #https://github.com/hashicorp/terraform/issues/4987 - can only add ethernet id of the instance
     instance_id = "${aws_instance.nat.id}"
   }
   
