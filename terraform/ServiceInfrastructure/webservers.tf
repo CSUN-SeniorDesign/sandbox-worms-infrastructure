@@ -1,10 +1,9 @@
-/*
 data "aws_security_group" "bastionhostsg"{
     filter {
         name = "tag:Name"
         values = ["bastionSG"]
     }
-}*/
+}
 data "aws_security_group" "privateInstanceSG" {
     filter {
         name = "tag:Name"

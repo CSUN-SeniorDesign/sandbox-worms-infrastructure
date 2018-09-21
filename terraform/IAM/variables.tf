@@ -19,6 +19,3 @@ variable "aws_secret_key" {}
 variable "sandboxworms_group" {
   default = "Group_Members"
 }
-variable "aws_key_name" {
-  default = "proj0_aubrey"
-}

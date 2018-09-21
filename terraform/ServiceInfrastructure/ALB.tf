@@ -39,7 +39,7 @@ resource "aws_alb" "sandbox-ALB" {
 resource "aws_lb_target_group" "sandbox-target" {
   name     = "sandbox-target"
   port     = 80
-  protocol = "HTTPS"
+  protocol = "HTTP"
   vpc_id   = "${data.aws_vpc.selected.id}"
   health_check {
                 path = "/index.html"
@@ -88,7 +88,7 @@ resource "aws_lb_listener_certificate" "www_sandboxworms_me" {
   certificate_arn = "${aws_iam_server_certificate.sandboxwormscert.arn}"
 }*/
 
-resource "aws_alb_listener" "alb-listener" {
+resource "aws_alb_listener" "alb-front-redirect" {
 	load_balancer_arn	=	"${aws_alb.sandbox-ALB.arn}"
 	port			=	"80"
 	protocol		=	"HTTP"
