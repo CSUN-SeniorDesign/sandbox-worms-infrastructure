@@ -1,5 +1,4 @@
 data "aws_vpc" "selected" {
-  #id = "${var.vpc_id}"
   filter {
     name = "tag:Name"
     values = ["Project 0"]
@@ -82,12 +81,6 @@ resource "aws_alb_listener" "alb_front_https" {
 		type			=	"forward"
 	}
 }
-/*
-resource "aws_lb_listener_certificate" "www_sandboxworms_me" {
-  listener_arn    = "${aws_alb_listener.alb_front_https.arn}"
-  certificate_arn = "${aws_iam_server_certificate.sandboxwormscert.arn}"
-}*/
-
 resource "aws_alb_listener" "alb-front-redirect" {
 	load_balancer_arn	=	"${aws_alb.sandbox-ALB.arn}"
 	port			=	"80"
