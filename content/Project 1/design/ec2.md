@@ -26,27 +26,16 @@ tags = ["aws", "vpc", "network", "design"]
 
 ----------
 ***Executive Summary:***  
-Sandboxworms system provides the team members a platform to learn, experiment and practice on multiple technology. It includes, but not limited to, Github, Hugo, Markdown files, Linux Servers, AWS services (EC2, VPC, IGW, Subnets, Route53 etc.), DNS, and Certificates. With the platform in place, team members will be able to apply the theories and principles learned from all the previous CSUN courses. The system will also provide the team members a platfrom to post blogs of their experience for the week.    
+Sandboxworms system provides the team members a platform to learn, experiment and practice on multiple technology. It includes, but not limited to Terraform, Ansible, Github, Hugo, Markdown files, Linux Servers, AWS services (EC2, VPC, IGW, Subnets, Route53 etc.), DNS, and Certificates. With the platform in place, team members will be able to apply the theories and principles learned from all the previous CSUN courses. The system will also provide the team members a platfrom to post blogs of their experiences for the week.    
 
 ***Goals:***  
-- Build a Team  
-- Github setup  
-- Github Pull Request/Peer Review Workflow  
-- Git for Student  
-- AWS Account (Educate) for all Team Members  
-- Slack Channel  
-- AWS Secret Store   
-- Setup AWS Virtual Private Cloud  
-- Setup a Web Server on AWS Elastic Compute Cloud (EC2)  
-- Secure way to allow all users to access your machine while not sharing credentials  
-- AWS Route53  
-- Setup your Blog  
-- Purchase a Domain : sandboxworms.me
-- Generate TLS Certificates  
-- Blog Deployment 
+- Automation of AWS Infrastructure creation and modification
+- Automation of Service Instances configuration
+- Improvement in blog posting workflow
+- Team-wide consistent setup of different tools and environments (Terraform and Ansible)
 
 ***Non-goals:***  
-- High-Availability of Services   
+- High-Availa
 - Load Balanced services   
 - insert more  
 
