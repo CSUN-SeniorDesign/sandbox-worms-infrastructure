@@ -34,30 +34,30 @@ Sandboxworms system provides the team members a platform to learn, experiment an
 - Improvement in blog posting workflow
 - Team-wide consistent setup of different tools and environments (Terraform and Ansible)
 
+
 ***Non-goals:***  
-- High-Availa
-- Load Balanced services   
-- insert more  
+- High-Availability by utilizing multiple availability zones
+
 
 ***Background:***  
 The system is being designed by CSUN students who have very limited experience in most of the technology being used. Therefore, constant downtime during the project deployment as team members collaborate is to be expected. It should also be noted that although the implementation is small, many of the design choices will be made in consideration of possible future growth and potential real-life use. 
 
 We will refer to Amazon Web Services as AWS. Production account will be referred to the AWS account that will be submitted to the professor for grading.
 
-***High-Level Design:***     
-In setting up the project, the team needs collaboration tools and IT infrastructure. Github will be used for code repository, file sharing, documentations repository and project management. Github was chosen because it was free, flexible, provided as SaaS, and offers a limited but fit for our purpose, project management. Slack will be used for daily team conversation. AWS will be used as the infrastructure and other needed SaaS. 
 
-AWS network infrastructure was setup so that future high-availability for the services could be achieved. Each team members has its own AWS account that belongs to the Team's AWS organization. One account was chosen to be the production, in our case the account to be graded.  
+***High-Level Design:***     
+Although this projects do not use previous implementations from Project 0, it does utilize the knowledge and insight gained from the experience on setting up the AWS infrastructure. We will be using terraform and ansible as our primary tools in completing Project 1. 
+
+Terraform will be used to setup the environment in AWS. Ansible will be used to configure the service infrastructures and deploy new blog post every week. In building up the environment, the goal is to promote portability of the code and avoid static or manual input for the environment to be setup. If manual input is needed, it must be on a separate file to increase visibility.
 
 
 ***Detailed Design:***  
 *Team Members Workflow:*  
-Each team member will setup a the repository locally. A pull request will need to be submitted for any change. At least 1 team member will need to do a peer review of the change and approve the merge. For tasks or issues that must be done on AWS, each team member will simulate or practice the change on their own account. When ready, changes can be done on the production account. Uploading of files will be done thru SCP.
+Each team member will setup a the repository locally. A pull request will need to be submitted for any change. At least 1 team member will need to do a peer review of the change and approve the merge. Application of terraform codes can and should be done at each member's prerogative. This will help in learning the platforms, terraform and ansible.
 
-*AWS Network Infrastructure*  
-Production account will use Virginia Region. Refer to the [diagram](https://docs.sandboxworms.me/design/). 6 Subnets were created on their own availability zones. An AWS Internet Gateway has been setup to allow inbound and outbound access from and to the EC2 instance in the public subnets. 
+*Terraform:*  
 
-AWS Route 53 will be used as a nameserver for the Sandboxworms.me domain. 
+- All terraform codes must be placed in the terraform subfolder of the   
 
 *EC2 Instance*  
 OS: Redhat Linux 7  
