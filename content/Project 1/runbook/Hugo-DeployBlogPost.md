@@ -4,38 +4,34 @@ description = ""
 weight = 3
 # Type of content, set "slide" to display it fullscreen with reveal.js
 type="page"
-date = "2018-09-03"
+date = "2018-09-22"
 # Creator's Display name
 creatordisplayname = "Aubrey Nigoza"
 # Creator's Email
 creatoremail = "aubrey.nigoza.34@my.csun.edu"
-# LastModifier's Display name
-lastmodifierdisplayname = ""
+# LastModifier's Display name 
+lastmodifierdisplayname = "Aubrey Nigoza"
 # LastModifier's Email
-lastmodifieremail = ""
-tags = ["aws", "vpc", "network", "design"]
+lastmodifieremail = "aubrey.nigoza.34@my.csun.edu"
+tags = ["aws", "vpc", "hugo", "ansible"]
 +++
-# Deploy Blog Post #
-## Goal ##
-The goal is to generate the static html and copy it over to the webserver.
-## Workflow: ##
-1. Generate static html
-2. Connect to EC2 using SCP protocol (use winscp)
-3. Copy the files to your homedirectory
-4. Use sudo to move the over to the DocumentRoot
+## Deploy Blog Post ##
+### Goal ###
+The goal is to generate the static html and copy it over to the webserver using Ansible
+### Workflow: ###
+1. Clone
+2. Generate HTML
+3. Upload to EC2 Webservers
+### Assumptions ###
+1. You have followed Ansible Controller Setup Guide
+### Instructions ###
+1. Login to Ubuntu Controller
+2. Pull the latest sandbox-worms-blog repo
+3. Run script buildsite
+4. Run playbook
 
-## Instructions ##
-1. On Git Bash, Git CMD, or CMD navigate to the hugo directory
-2. Make sure the /templates folder is not empty
-3. If templates folder is empty, navigate to the templates folder and clone the git of our template: https://github.com/Lednerb/bilberry-hugo-theme.git
-4. Make sure you are at the parent folder of the blog repo
-5. hugo
-6. The static html files will be generated in the public folder. 
-7. Open WinSCP
-8. Connect to the server using your username and private key
-9. Copy the html files to your home directory
-10. Login to the EC2 instance using putty (ssh)
-11. Use sudo to delete the files in the Documentroot (/var/www/html/) (rm /path/to/directory/* -r)
-12. Use sudo to move the static html files to the DocumentRoot (mv /path/sourcefolder/* /path/destinationfolder/)
-13. sudo restorecon -r /var/www
-
+		cd ~/repo/sandbox-worms-blog
+		git pull origin master
+		cd ~/repo/sandbox-worms-infrastructure/ansible
+		./buildsite
+		ansible-playbook blogbuild.yml 

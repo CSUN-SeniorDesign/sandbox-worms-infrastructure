@@ -1,11 +1,12 @@
-Groups:
-IAMFullAccess
-AmazonDynamoDBFullAccess
-TF-Policy
+**Groups:**
+IAMFullAccess - Give full access to IAM
+AmazonDynamoDBFullAccess - Built-in
+TF-Policy - Custom
 
 
 
-# TF-Policy #
+**TF-Policy**
+
 \# Allows access to s3 bucket and dynamodb table to an IAM
 
 

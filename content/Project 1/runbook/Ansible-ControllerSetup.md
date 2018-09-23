@@ -21,10 +21,14 @@ tags = ["aws", "ansible", "centos", "howto"]
 Setup a consistent ansible controller across different team members
 
 ## Workflow: Login ##
-1. Install Ansible Controller
+1. Install Ansible Controller (Ubuntu)
 2. Configure Ansible to work with AWS
 	- Set Environment variable
 	- Install Ec2.py and Ec2.ini
+3. Clone Repos
+4. Pull latest Repo
+5. Run Hugo from the blogpost repo
+6. Run Ansible from the infrastructure_repo/ansible
 
 
 ## Specs: ##
@@ -32,73 +36,67 @@ Setup a consistent ansible controller across different team members
 2. No password for admin user. Use Private key
 
 
-## Instructions ##
+## Setup Instructions ##
 
-1. Set VM to Bridged Adapter
-2. Install CENTOS - minimal Install
-3. Set root password
-4. Set admin account - no password
-5. Change Hostname- sudo vi /etc/hostname
-6. ### Create user in EC2  ###
-7. Login to EC2 instance
-8. sudo useradd yerden -d /home/yerden
-9. sudo vi /etc/sudoers
-10. Add this to the bottom of the textfile
+###Ubuntu Setup###
+1. Install latest server
+2. server snaps to add:
+	1. powershell
+	2. aws-cli
+	3. amazon-ssm-agent
+4. sudo add apt-repository universe
+5. sudo apt-get update
+5. sudo apt-update
+6. sudo apt-upgrade
+7. follow ansible setup guide
+8. sudo snap install hugo --channel=extended
+9. curl -L https://github.com/aubreynigoza.keys >> .ssh/authorized_keys
+10. chmod 700 .ssh/authorized_keys
+11. sudo pip install boto
+12. sudo pip install boto3
+13. sudo pip install paramiko
+14. sudo pip install PyYAML
+15. sudo pip install Jinja2
+16. sudo pip install httplib2
+17. sudo pip install six
+18. sudo vi /etc/sudoers
+19. Add this to the bottom of the textfile
 	- yerden          ALL=(ALL)       NOPASSWD: ALL
-11.  sudo su yerden
-12.  cd /home/yerden
-13.  mkdir .ssh
-14.  chmod 700 .ssh
-15.  touch .ssh/authorized_keys
-16. chmod 600 .ssh/authorized_keys
-17. vi .ssh/authorized_keys
-18. Open the public key using notepad
-19. Format it so it looks like this:
-	- ssh-rsa AAAAB3NzaC1yc2EAAAA... Yerden
-	- the ... indicates the remaining parts of the public key. make sure they are all in one line. Remove the new line. 
 20. sudo vi /etc/ssh/sshd_config
 	- PasswordAuthentication no
 	- PermitRootLogin no
+21. awsconfig
+	- follow prompt to save your credential
 
-21. systemctl restart sshd.service
-22. sudo yum update
-23. sudo yum install ansible
-24. cat /etc/ansible/ansible.cfg - look at ansible config
-25. sudo yum install epel-release
-26. sudo yum install python-pip
-27. sudo pip install boto
-28. sudo pip install boto3
-29. sudo pip install paramiko
-30. sudo pip install PyYAML
-31. sudo pip install Jinja2
-32. sudo pip install httplib2
-33. sudo pip install six
-34. sudo yum install git
-35. sudo yum install npm #for installing postcss-cli which is required for hugo
+**Copy private key to controller:**
+1. vi ~/.ssh/id_rsa
+2. paste private key
+3. save it
+4. chmod 400 .ssh/id_rsa
 
-### Hugo Install ###
-1. Visit this website: https://copr.fedorainfracloud.org/coprs/daftaupe/hugo/ 
-2. Copy the text of the EPEL for CENTOS7 (this is to add the repo)
-3. sudo yum update
-4. sudo yum install hugo
-5. 
+**Start ssh agent**
 
-### Git Configuration ###
-1. Create repo directory on any directory
-2. Clone our repositories
+1. eval \`ssh-agent\`
+2. ssh-add ~/.ssh/id_rsa or ssh-add 
 
-		mkdir repo
-		cd repo
-		git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure.git
-		git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-blog.git
+**Clone Repos**
+
+1. cd ~
+2. mkdir repo
+3. cd repo
+4. git config --global user.name "aubreynigoza"
+5. git config --global user.email "aubrey.nigoza.34@my.csun.edu"
+5. git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure.git
+6. cd sandbox-worms-infrastructure
+7. git remote set-url origin git@github.com:CSUN-SeniorDesign/sandbox-worms-infrastructure.git
+8. Repeat for blog
+9. For blog, clone the theme folder as well:   https://github.com/Lednerb/bilberry-hugo-theme.git
+
 
 
 ### Ansible Configuration ###
-1. Configure environment variable for AWS
 
-		export AWS_ACCESS_KEY_ID='YOUR_AWS_API_KEY'
-		export AWS_SECRET_ACCESS_KEY='YOUR_AWS_API_SECRET_KEY'
-2. Download require script for dynamic inventory of EC2 instances
+1. Download require script for dynamic inventory of EC2 instances (Deprecated Setup - could be followed to download another copy of the files below but they exists in our repo already)
 
 		sudo curl -o ec2.py https://raw.githubusercontent.com/ansible/ansible/devel/contrib/inventory/ec2.py
 		sudo curl -o ec2.ini https://raw.githubusercontent.com/ansible/ansible/devel/contrib/inventory/ec2.ini
@@ -106,13 +104,12 @@ Setup a consistent ansible controller across different team members
 		sudo chmod +x ec2.py
 
 
-3. This tells ec2.py where the ec2.ini config file is located.
+2. This tells ec2.py where the ec2.ini config file is located. (Deprecated Setup - do not follow)
 
 		export EC2_INI_PATH=/etc/ansible/ec2.ini 
-		#export ANSIBLE_HOSTS=/etc/ansible/ec2.py
 		export ANSIBLE_INVENTORY=/etc/ansible/ec2.py
 
-4. Configure SSH-Agent Forwarding
+4. Configure SSH-Agent Forwarding (Deprecated Setup - 'Start Agent' setup above will do this)
 	- Copy Public key of the ec2 instance to ~/.ssh/keypair.pem
 
 			ssh-agent bash
@@ -127,19 +124,25 @@ Setup a consistent ansible controller across different team members
 
 
 
-5. ./ec2.py -> should return inventory
-6. ansible -m ping tag_Name_Aubrey01 -u ec2-user -> tag_*tagname*_*tagvalue*
-7. ansible  -m ping all -u ec2-user -> -vvv debugging
+
+#### Ansible Ad-Hoc Commands Sample ####
+Run from sand-boxworms-infrastructure/ansible
+
+	inventory/ec2.py 
+	ansible -m ping tag_Type_BastionHost #tag_*tagname*_*tagvalue*
+	ansible  -m ping all -u ec2-user -vvv #debugging full details
 
 
 ### Running First Playbook ###
 	ansible-playbook -i /etc/ansible/ec2.py --limit "tag_Type_WebServer"  httpd.yml
+
 
 ### Troubleshooting ###
 - ppk must be converted to pem
 - environment variables must be added every reboot
 - ssh-agent must be redone
 - edit .ssh/config with bastion host public ip
+
 ### Useful Links ###
 
 
@@ -151,45 +154,5 @@ Setup a consistent ansible controller across different team members
 - https://www.redhat.com/en/blog/system-administrators-guide-getting-started-ansible-fast
 - https://docs.ansible.com/ansible/2.4/become.html
 
-
-
-
-#####ubuntu setup####
-1. Install latest server
-2. server snaps to add:
-	1. powershell
-	2. aws-cli
-	3. amazon-ssm-agent
-4. sudo add apt-repository universe
-5. sudo apt-get update
-5. sudo apt-update
-6. sudo apt-upgrade
-7. follow ansible
-8. sudo snap install hugo --channel=extended
-9. curl -L https://github.com/aubreynigoza.keys >> .ssh/authorized_keys
-10. chmod 700 .ssh/authorized_keys
-
-Copy private key to controller:
-1. vi ~/.ssh/id_rsa
-2. paste private key
-3. save it
-4. chmod 400 .ssh/id_rsa
-
-Start ssh agent
-
-1. eval \`ssh-agent\`
-2. ssh-add ~/.ssh/id_rsa or ssh-add 
-
-Clone Repos
-1. cd ~
-2. mkdir repo
-3. cd repo
-4. git config --global user.name "aubreynigoza"
-5. git config --global user.email "aubrey.nigoza.34@my.csun.edu"
-5. git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure.git
-6. cd sandbox-worms-infrastructure
-7. git remote set-url origin git@github.com:CSUN-SeniorDesign/sandbox-worms-infrastructure.git
-8. Repeat for blog
-9. For blog, clone the theme folder as well:   https://github.com/Lednerb/bilberry-hugo-theme.git
 
 

@@ -15,16 +15,20 @@ lastmodifierdisplayname = ""
 lastmodifieremail = ""
 tags = ["aws", "vpc", "service infrastructure", "design"]
 +++
-## Goal: ##
+### Goal: ###
 Setup a consistent terraform environment across multiple team members of SandboxWorms.
 
-## Workflow: ##
-1. 
+### Workflow: ###
+1. Initiliaze each working directories (one-time)
+2. Write Code
+3. Test by using Terraform plan
+4. Test by applying
+5. Test by rebuilding - destroy and apply
 
 
-
-## Specs: ##
-
+#### Specs: ###
+1. Secure AWS Key
+2. Use Remote TFstate file in S3
 
 
 ## Instructions ##
