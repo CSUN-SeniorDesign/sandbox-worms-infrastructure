@@ -17,7 +17,7 @@ tags = ["aws", "vpc", "network", "design"]
 +++
 
 ----------
-**Date:** 9/4/2018 8:53:22 PM  
+**Date:** 9/20/2018 8:53:22 PM  
 **Author(s):** [Aubrey Nigoza](mailto:aubrey.nigoza.34@my.csun.edu)  
 **Reviewer(s):**  
 **Approver(s):**  
