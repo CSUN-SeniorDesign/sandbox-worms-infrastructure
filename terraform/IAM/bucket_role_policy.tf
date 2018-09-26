@@ -85,7 +85,7 @@ EOF
 }
 
 /*===================POLICY ATTACH===================*/
-resource "aws_iam_policy_attachment" "CCI_put" {
+/*resource "aws_iam_policy_attachment" "CCI_put" {
   name       = "CCI_put"
   users      = ["${aws_iam_user.CCI.name}"]
   roles      = ["${aws_iam_role.circ-ci.name}"]
@@ -97,4 +97,15 @@ resource "aws_iam_policy_attachment" "instance_get" {
   name       = "instance_get"
   roles      = ["${aws_iam_role.instance-package.name}"]
   policy_arn = "${aws_iam_policy.CCI_policy_GET.arn}"
+}*/
+
+resource "aws_iam_role_policy_attachment" "CCI_put" {
+    role       = "${aws_iam_role.circ-ci.name}"
+    policy_arn = "${aws_iam_policy.CCI_policy_PUT.arn}"
 }
+
+resource "aws_iam_role_policy_attachment" "instance_get" {
+    role       = "${aws_iam_role.instance-package.name}"
+    policy_arn = "${aws_iam_policy.CCI_policy_GET.arn}"
+}
+
