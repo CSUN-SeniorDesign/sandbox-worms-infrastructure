@@ -30,13 +30,21 @@ resource "aws_iam_policy" "CCI_policy_PUT" {
 
   policy = <<EOF
 {
-  "Version": "2012-10-17",
-  "Statement": [{
-        "Effect": "Allow",
-        "Action": ["s3:PutObject", 
-				  "s3:ListBucket"],
-        "Resource": "${data.aws_s3_bucket.sandboxworms-packages-92618.arn}"
-    }]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::sandboxworms-packages-92618",
+                "arn:aws:s3:::sandboxworms-packages-92618/*"
+            ]
+        }
+    ]
 }
 EOF
 }
