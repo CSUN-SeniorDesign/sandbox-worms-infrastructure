@@ -1,0 +1,6 @@
+---
+- hosts: tag_Type_WebServer
+  vars_files:
+    - group_vars/main.yml
+  roles:
+          - { role: geerlingguy.apache, become: yes }
