@@ -23,7 +23,7 @@
   }],
   
   "provisioners": [{
-    "type": "ansible-local",
-    "playbook_files":[ "blogbuild.yml", "ec2config.yml" ]
+    "type": "ansible",
+    "playbook_file": "blogbuild.yml"
 	}]
 }
