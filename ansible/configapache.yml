@@ -1,0 +1,6 @@
+---
+- hosts: tag_name_baseAMI
+  vars_files:
+    - group_vars/main.yml
+  roles:
+          - { role: geerlingguy.apache, become: yes }

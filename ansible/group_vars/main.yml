@@ -1,0 +1,7 @@
+apache_listen_ip: "*"
+apache_listen_port: 80
+apache_vhosts:
+  - servername: "staging.sandboxworms.me" 
+    documentroot: "/var/www/vhosts/staging_sandboxworms"
+  - servername: "www.sandboxworms.me"
+    doumentroot: "/var/www/html"
