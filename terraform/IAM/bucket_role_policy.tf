@@ -107,6 +107,11 @@ resource "aws_iam_role" "instance-package" {
 EOF
 }
 
+resource "aws_iam_instance_profile" "instance_profile" {
+  name = "instance_profile"
+  role = "${aws_iam_role.instance-package.name}"
+}
+
 /*===================POLICY ATTACH===================*/
 resource "aws_iam_role_policy_attachment" "CCI_put" {
     role       = "${aws_iam_role.circ-ci.name}"
