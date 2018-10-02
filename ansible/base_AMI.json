@@ -24,6 +24,6 @@
   
   "provisioners": [{
     "type": "ansible",
-    "playbook_file": "blogbuild.yml"
+    "playbook_file": "ec2config.yml"
 	}]
 }
