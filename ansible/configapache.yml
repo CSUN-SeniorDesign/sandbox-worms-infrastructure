@@ -57,7 +57,6 @@
       cron:
         name: "staging deployment"
         minute: "*/5"
-        hour: "0"
         job: "/etc/cron.d/deploysite.sh &>> /home/packages/stagingcron.log"
         state: present
     - name: Run prod script every 5 minutes
@@ -65,7 +64,6 @@
       cron:
         name: "prod deployment"
         minute: "*/5"
-        hour: "0"
         job: "root /etc/cron.d/prodsite.sh &>> /home/packages/prodcron.log"
         state: present
 
