@@ -62,8 +62,10 @@ resource "aws_iam_policy" "CCI_policy_GET" {
         "Effect": "Allow",
         "Action": ["s3:GetObject", 
 				  "s3:ListBucket"],
-        "Resource": "${data.aws_s3_bucket.sandboxworms-packages-92618.arn}"
-    }]
+        "Resource": [
+                "arn:aws:s3:::sandboxworms-packages-92618",
+                "arn:aws:s3:::sandboxworms-packages-92618/*"
+            ]
 }
 EOF
 }
