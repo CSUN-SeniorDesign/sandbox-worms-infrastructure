@@ -64,7 +64,7 @@
       cron:
         name: "prod deployment"
         minute: "*/5"
-        job: "root /etc/cron.d/proddeploy.sh &>> /home/packages/prodcron.log"
+        job: "/etc/cron.d/proddeploy.sh &>> /home/packages/prodcron.log"
         state: present
 
 
