@@ -43,7 +43,7 @@
         dest: /etc/cron.d/
         owner: root
         group: root
-        mode: 0644
+        mode: 0744
     - name: copy prod script
       become: yes
       copy:
@@ -51,7 +51,7 @@
         dest: /etc/cron.d/
         owner: root
         group: root
-        mode: 0644
+        mode: 0744
     - name: Run staging script every 5 minutes
       become: yes
       cron:
