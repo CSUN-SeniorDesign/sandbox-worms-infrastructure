@@ -8,6 +8,27 @@ resource "aws_kms_key" "tf_tar_enc_key" {
     Origin = "Terraform"
   }
 }
+policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Id": "key-default-1",
+  "Statement": [
+    {
+      "Sid": "Enable IAM User Permissions",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [
+          "arn:aws:iam::429784283093:root",
+          "arn:aws:iam::429784283093:user/CCI",
+          "arn:aws:iam::429784283093:role/instance-package"
+        ]
+      },
+      "Action": "kms:*",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
 
 /*===================S3 BUCKET===================*/
 resource "aws_s3_bucket" "sandboxworms-packages-92618" {
