@@ -4,3 +4,16 @@
     - group_vars/main.yml
   roles:
           - { role: geerlingguy.apache, become: yes }
+  tasks:
+    - name: 'Install Python PIP'
+      tags: 'aws-cli'
+      become: 'yes'
+      apt: >
+        pkg=python-pip
+        state=latest
+    - name: 'Install AWS CLI'
+      tags: 'aws-cli'
+      become: 'yes'
+      pip: >
+        name=awscli
+        state=latest
