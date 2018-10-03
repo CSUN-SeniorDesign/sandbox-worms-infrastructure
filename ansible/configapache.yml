@@ -57,14 +57,14 @@
       cron:
         name: "staging deployment"
         minute: "*/5"
-        job: "/etc/cron.d/deploysite.sh &>> /home/packages/stagingcron.log"
+        job: "/etc/cron.d/stagingdeploy.sh &>> /home/packages/stagingcron.log"
         state: present
     - name: Run prod script every 5 minutes
       become: yes
       cron:
         name: "prod deployment"
         minute: "*/5"
-        job: "root /etc/cron.d/prodsite.sh &>> /home/packages/prodcron.log"
+        job: "root /etc/cron.d/proddeploy.sh &>> /home/packages/prodcron.log"
         state: present
 
 
