@@ -52,18 +52,18 @@
         owner: root
         group: root
         mode: 644
-    - name: Run script every 5 minutes
+    - name: Run staging script every 5 minutes
       become: yes
       cron:
-        name: "check dirs"
+        name: "staging deployment"
         minute: "*/5"
         hour: "0"
         job: "/etc/cron.d/deploysite.sh &>> /home/packages/stagingcron.log"
         state: present
-    - name: Run script every 5 minutes
+    - name: Run prod script every 5 minutes
       become: yes
       cron:
-        name: "check dirs"
+        name: "prod deployment"
         minute: "*/5"
         hour: "0"
         job: "root /etc/cron.d/prodsite.sh &>> /home/packages/prodcron.log"
