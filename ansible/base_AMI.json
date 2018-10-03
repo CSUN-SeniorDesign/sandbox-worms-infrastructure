@@ -11,7 +11,7 @@
     "source_ami_filter": {
       "filters": {
       "virtualization-type": "hvm",
-      "name": "/dev/sda1",
+      "name": "RHEL-7.5_HVM_GA-20180322-x86_64-1-Hourly2-GP2",
       "root-device-type": "ebs"
       },
       "owners": ["309956199498"],
