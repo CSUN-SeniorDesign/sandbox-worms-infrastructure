@@ -27,3 +27,57 @@
       pip: >
           name=awscli
           state=latest
+    - name: Creates directory
+      become: yes
+      file: path=/home/packages state=directory
+    - name: Creates staging_sandboxworms
+      become: yes
+      file: path=/var/www/vhosts/staging_sandboxworms state=directory
+    - name: Creates prod_sandboxworms
+      become: yes
+      file: path=/var/www/vhosts/prod_sandboxworms state=directory
+    - name: copy staging script
+      become: yes
+      copy:
+        src: stagingdeploy.sh
+        dest: /etc/cron.d/
+        owner: root
+        group: root
+        mode: 644
+    - name: copy prod script
+      become: yes
+      copy:
+        src: proddeploy.sh
+        dest: /etc/cron.d/
+        owner: root
+        group: root
+        mode: 644
+    - name: Run script every 5 minutes
+      become: yes
+      cron:
+        name: "check dirs"
+        minute: "*/5"
+        hour: "0"
+        job: "root /etc/cron.d/deploysite.sh &>> /home/packages/stagingcron.log"
+    - name: Run script every 5 minutes
+      become: yes
+      cron:
+        name: "check dirs"
+        minute: "*/5"
+        hour: "0"
+        job: "root /etc/cron.d/prodsite.sh &>> /home/packages/prodcron.log"
+
+
+#mkdir /usr/bin
+#copy script here
+#configure cronjob
+#mkdir /var/www/vhosts/staging_sandboxworms
+#mkdir /var/www/vhosts/prod_sandboxworms
+#install datadog agent
+#copy over datadog config file
+
+
+#*/5  *  *  *  * root /etc/cron.d/deploysite.sh &>> /home/packages/cron.log
+#chmod 644
+
+
