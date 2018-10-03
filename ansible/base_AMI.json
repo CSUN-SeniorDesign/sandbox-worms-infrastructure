@@ -11,20 +11,20 @@
     "source_ami_filter": {
       "filters": {
       "virtualization-type": "hvm",
-      "name": "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*",
+      "name": "RHEL-7.5_HVM_GA-20180322-x86_64-1-Hourly2-GP2",
       "root-device-type": "ebs"
       },
-      "owners": ["099720109477"],
+      "owners": ["309956199498"],
       "most_recent": true
     },  
     "instance_type": "t2.micro",
-    "ssh_username": "ubuntu",
-    "ami_name": "packer-example {{timestamp}}"
+    "ssh_username": "ec2-user",
+    "ami_name": "packer-example {{timestamp}}",
     "tags": {"name": "baseAMI"}
   }],
   
   "provisioners": [{
     "type": "ansible",
-    "playbook_file": "ec2config.yml"
+    "playbook_file": "configapache.yml"
 	}]
 }
