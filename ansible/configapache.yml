@@ -59,6 +59,7 @@
         minute: "*/5"
         hour: "0"
         job: "root /etc/cron.d/deploysite.sh &>> /home/packages/stagingcron.log"
+        state: present
     - name: Run script every 5 minutes
       become: yes
       cron:
@@ -66,6 +67,7 @@
         minute: "*/5"
         hour: "0"
         job: "root /etc/cron.d/prodsite.sh &>> /home/packages/prodcron.log"
+        state: present
 
 
 #mkdir /usr/bin
