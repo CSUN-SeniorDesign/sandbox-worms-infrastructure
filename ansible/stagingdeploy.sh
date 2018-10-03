@@ -1,4 +1,6 @@
 #!/bin/bash
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
 PWD=/home/packages
 file="/home/packages/latestbuild.txt"
 echo $PWD
