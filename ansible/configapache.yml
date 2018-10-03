@@ -4,3 +4,80 @@
     - group_vars/main.yml
   roles:
           - { role: geerlingguy.apache, become: yes }
+  tasks:
+    - name: install epel-release repo for python
+      become: yes
+      yum:
+        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
+        state: present
+    - name: Import EPE GPG Key
+      become: yes
+      rpm_key:
+        key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}
+        state: present
+    - name: 'Install Python PIP'
+      #tags: 'aws-cli'
+      become: 'yes'
+      yum:
+        name: python-pip
+        state: latest
+    - name: 'Install AWS CLI'
+      #tags: 'aws-cli'
+      become: 'yes'
+      pip: >
+          name=awscli
+          state=latest
+    - name: Creates directory
+      become: yes
+      file: path=/home/packages state=directory
+    - name: Creates staging_sandboxworms
+      become: yes
+      file: path=/var/www/vhosts/staging_sandboxworms state=directory
+    - name: Creates prod_sandboxworms
+      become: yes
+      file: path=/var/www/vhosts/prod_sandboxworms state=directory
+    - name: copy staging script
+      become: yes
+      copy:
+        src: stagingdeploy.sh
+        dest: /etc/cron.d/
+        owner: root
+        group: root
+        mode: 0744
+    - name: copy prod script
+      become: yes
+      copy:
+        src: proddeploy.sh
+        dest: /etc/cron.d/
+        owner: root
+        group: root
+        mode: 0744
+    - name: Run staging script every 5 minutes
+      become: yes
+      cron:
+        name: "staging deployment"
+        minute: "*/5"
+        job: "/etc/cron.d/stagingdeploy.sh &>> /home/packages/stagingcron.log"
+        state: present
+    - name: Run prod script every 5 minutes
+      become: yes
+      cron:
+        name: "prod deployment"
+        minute: "*/5"
+        job: "/etc/cron.d/proddeploy.sh &>> /home/packages/prodcron.log"
+        state: present
+
+
+#mkdir /usr/bin
+#copy script here
+#configure cronjob
+#mkdir /var/www/vhosts/staging_sandboxworms
+#mkdir /var/www/vhosts/prod_sandboxworms
+#install datadog agent
+#copy over datadog config file
+
+
+#*/5  *  *  *  * root /etc/cron.d/deploysite.sh &>> /home/packages/cron.log
+#chmod 644
+
+
