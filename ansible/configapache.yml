@@ -5,7 +5,7 @@
   roles:
           - { role: geerlingguy.apache, become: yes }
   tasks:
-    - name: install epel-release repo for pythong
+    - name: install epel-release repo for python
       become: yes
       yum:
         name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
@@ -18,12 +18,12 @@
     - name: 'Install Python PIP'
       #tags: 'aws-cli'
       become: 'yes'
-      yum: >
-        pkg=python-pip
-        state=latest
+      yum:
+        name: python-pip
+        state: latest
     - name: 'Install AWS CLI'
       #tags: 'aws-cli'
       become: 'yes'
-      yum: >
-        name=awscli
-        state=latest
+      pip: >
+          name=awscli
+          state=latest
