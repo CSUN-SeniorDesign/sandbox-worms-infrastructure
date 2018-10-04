@@ -1,5 +1,5 @@
 ---
-- hosts: tag_Name_Webservers
+- hosts: all
   vars_files:
     - group_vars/main.yml
   roles:
