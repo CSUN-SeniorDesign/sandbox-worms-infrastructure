@@ -30,7 +30,7 @@ data "aws_subnet" "public_sub2"{
         values = ["public2"]
     }
 }
-resource "aws_instance" "web01" {
+/*resource "aws_instance" "web01" {
     ami = "ami-6871a115" #redhat linux
     #availability_zone = "${data.aws_availability_zones.available.names[0]}"  #subnet id should set it.
     instance_type = "t2.micro"
@@ -51,4 +51,4 @@ resource "aws_instance" "web02" {
     tags {
         Type = "WebServer"
     }
-}
+}*/

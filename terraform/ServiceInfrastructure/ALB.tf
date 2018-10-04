@@ -44,7 +44,7 @@ resource "aws_lb_target_group" "sandbox-target" {
                 path = "/index.html"
                 port = "80"
                 protocol = "HTTP"
-                healthy_threshold = 2
+                healthy_threshold = 3
                 unhealthy_threshold = 2
                 interval = 5
                 timeout = 4
@@ -54,7 +54,7 @@ resource "aws_lb_target_group" "sandbox-target" {
 }
 
 
-
+/*
 resource "aws_alb_target_group_attachment" "web02-assoc" {
   target_group_arn = "${aws_lb_target_group.sandbox-target.arn}"
   target_id        = "${aws_instance.web02.id}"
@@ -65,7 +65,7 @@ resource "aws_alb_target_group_attachment" "web01-assoc" {
   target_id        = "${aws_instance.web01.id}"
   port             = 80
 }
-
+*/
 
 
 # LISTENERS
