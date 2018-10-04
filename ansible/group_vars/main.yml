@@ -28,4 +28,8 @@ datadog_checks:
         search_string: ['rsyslog' ]
         cpu_check_interval: 0.2
         exact_match: true
-        ignore_denied_access: true
+        #ignore_denied_access: true
+      - name : apache
+        search_string: ['httpd']
+  apache:
+    init_config:

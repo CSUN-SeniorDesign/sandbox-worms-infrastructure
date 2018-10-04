@@ -1,5 +1,5 @@
 ---
-- hosts: tag_name_baseAMI
+- hosts: tag_Name_Webservers
   vars_files:
     - group_vars/main.yml
   roles:
