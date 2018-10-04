@@ -1,10 +1,21 @@
 ---
-- hosts: tag_name_baseAMI
+- hosts: tag_Name_Webservers
   vars_files:
     - group_vars/main.yml
   roles:
           - { role: geerlingguy.apache, become: yes }
+          - { role: Datadog.datadog, become: yes}
   tasks:
+    - name: add authorized keys
+      authorized_key:
+        user: ec2-user
+        state: present
+        key: "{{ item }}"
+      with_items:
+        - https://github.com/Mark-Quark.keys
+        - https://github.com/aubreynigoza.keys
+        - https://github.com/nky9514.keys
+        - https://github.com/jpvinuya.keys
     - name: install epel-release repo for python
       become: yes
       yum:

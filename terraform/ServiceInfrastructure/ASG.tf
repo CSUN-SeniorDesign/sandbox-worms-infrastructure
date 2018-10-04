@@ -1,36 +1,36 @@
 data "aws_availability_zones" "all" {}
 
-data "aws_iam_instance_profile" "instance_profile"{
+data "aws_iam_instance_profile" "instance_profile" {
     name = "instance_profile"
 }
 
+data "aws_ami" "baseAMI" {
+    filter {
+        name = "tag:Type"
+        values = ["baseAMI"]
+    }
+}
 
 # ----------------------------------------------------------------------------------
 # CREATE THE AUTO SCALING GROUP
 # ----------------------------------------------------------------------------------
- resource "aws_autoscaling_group" "example" {
+ resource "aws_autoscaling_group" "sandboxworms-asg" {
   launch_configuration = "${aws_launch_configuration.sandbox.id}"
   availability_zones = ["${data.aws_availability_zones.all.names}"]
   target_group_arns = ["${aws_lb_target_group.sandbox-target.arn}"]
-  desired_capacity =  4
+  desired_capacity =  3
   min_size         =  3
   max_size         =  5
   force_delete     =  true
-  #vpc_zone_identifier       = ["${aws_subnet.example1.id}", "${aws_subnet.example2.id}"]
+  vpc_zone_identifier       = ["${data.aws_subnet.private_sub1.id}"]
   
-  vpc_zone_identifier       = ["subnet-0fc83728f731aebd4", "subnet-0ef3812a09d7fd828"]
-  
- # problem  notification_target_arn = "arn:aws:sqs:us-east-1:444455556666:queue1*"
- # problem  role_arn                = "arn:aws:iam::429784283093:role/circ-ci"
-
- # iam_instance_profile = "${data.aws_iam_instance_profile.instance_profile.name}"
  
 #Health check type is ELB for any load balancer
   health_check_type = "ELB"
   health_check_grace_period = 300
    tag {
     key = "Name"
-    value = "asg-for-webservers"
+    value = "Webservers"
     propagate_at_launch = true
   }
 }
@@ -40,10 +40,12 @@ data "aws_iam_instance_profile" "instance_profile"{
 # ----------------------------------------------------------------------------------
  resource "aws_launch_configuration" "sandbox" {
   # AMI is using Redhat 7 - in us-east-1
-  image_id = "ami-0b78d6ee1a229d003"
-  iam_instance_profile = "data.iam_instance_profile.instance_profile.name"
+  image_id = "${data.aws_ami.baseAMI.id}"
+  iam_instance_profile = "${data.aws_iam_instance_profile.instance_profile.name}"
   instance_type = "t2.micro"
-  security_groups = ["${data.aws_security_group.ALBSG.id}"]
+  security_groups = ["${data.aws_security_group.privateInstanceSG.id}"]
+  key_name = "${var.aws_key_name}"
+
    
   # Important note: whenever using a launch configuration with an auto scaling group, you must set
   # create_before_destroy = true. However, as soon as you set create_before_destroy = true in one resource, you must
