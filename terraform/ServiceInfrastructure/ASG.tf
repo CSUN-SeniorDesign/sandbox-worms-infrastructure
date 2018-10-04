@@ -1,8 +1,9 @@
 data "aws_availability_zones" "all" {}
 
-data "aws_iam_instance_profile" "profile"{
+data "aws_iam_instance_profile" "instance_profile"{
     name = "instance_profile"
 }
+
 
 # ----------------------------------------------------------------------------------
 # CREATE THE AUTO SCALING GROUP
@@ -22,7 +23,7 @@ data "aws_iam_instance_profile" "profile"{
  # problem  notification_target_arn = "arn:aws:sqs:us-east-1:444455556666:queue1*"
  # problem  role_arn                = "arn:aws:iam::429784283093:role/circ-ci"
 
- iam_instance_profile = "${data.aws_iam_instance_profile.profile.name}"
+ # iam_instance_profile = "${data.aws_iam_instance_profile.instance_profile.name}"
  
 #Health check type is ELB for any load balancer
   health_check_type = "ELB"
@@ -38,8 +39,9 @@ data "aws_iam_instance_profile" "profile"{
 # CREATE A LAUNCH CONFIGURATION THAT DEFINES EACH EC2 INSTANCE IN THE ASG
 # ----------------------------------------------------------------------------------
  resource "aws_launch_configuration" "sandbox" {
-  # Redhat 7 - in us-east-1
-  image_id = "ami-064e4298566da6862"
+  # AMI is using Redhat 7 - in us-east-1
+  image_id = "ami-0b78d6ee1a229d003"
+  iam_instance_profile = "data.iam_instance_profile.instance_profile.name"
   instance_type = "t2.micro"
   security_groups = ["${data.aws_security_group.ALBSG.id}"]
    
