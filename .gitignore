@@ -16,3 +16,6 @@ www_sandboxworms_me.pem
 credential*
 *.retry
 blog.tar.gz
+cert.crt
+chain.pem
+privkey.key
