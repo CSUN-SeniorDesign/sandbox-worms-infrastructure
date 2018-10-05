@@ -16,9 +16,9 @@ data "aws_security_group" "ALBSG" {
 
 resource "aws_iam_server_certificate" "sandboxwormscert" {
   name      = "sandboxwormscert"
-  certificate_body = "${file("certificates/www_sandboxworms_me.crt")}"
-  private_key      = "${file("certificates/sandboxwormsKey.key")}"
-  certificate_chain = "${file("certificates/www_sandboxworms_me.pem")}"
+  certificate_body = "${file("certificates/cert.crt")}"
+  private_key      = "${file("certificates/privkey.key")}"
+  certificate_chain = "${file("certificates/chain.pem")}"
 }
 
 # APPLICATION LOAD BALANCER
