@@ -2,9 +2,12 @@ apache_listen_ip: "*"
 apache_listen_port: 80
 apache_ExtendedStatus: "on"
 apache_vhosts:
-  - servername: "staging.sandboxworms.me" 
+  - servername: "staging.sandboxworms.me"
+    serveralias: "blog.staging.sandboxworms.me www.staging.sandboxworms.me"
     documentroot: "/var/www/vhosts/staging_sandboxworms"
     extra_parameters: |
+            SetEnvIf Origin "http(s)?://(www\.)?(staging.sandboxworms.me|blog.staging.sandboxworms.me|www.staging.sandboxworms.me)$" AccessControlAllowOrigin=$0
+            Header add Access-Control-Allow-Origin %{AccessControlAllowOrigin}e env=AccessControlAllowOrigin
             # ErrorLog logs/apache2/error.log
             #CustomLog logs/apache2/access.log
             <Location "/server-status">
@@ -14,8 +17,17 @@ apache_vhosts:
                 #Allow from sandboxworms.me
                 # Require host localhost           #uncomment to only allow requests from localhost
             </Location>
+            PassEnv HOSTNAME
+            Header set X-HOSTNAME %{HOSTNAME}e
   - servername: "www.sandboxworms.me"
-    doumentroot: "/var/www/vhosts/prod_sandboxworms"
+    serveralias: "blog.sandboxworms.me sandboxworms.me"
+    documentroot: "/var/www/vhosts/prod_sandboxworms"
+    extra_parameters: |
+            Header set Access-Control-Allow-Origin "https://blog.sandboxworms.me"
+            PassEnv HOSTNAME
+            Header set X-HOSTNAME %{HOSTNAME}e
+
+
 datadog_api_key: "d7ab829523a74e8c7ca3a0ae27aa5cee"
 datadog_agent_version: "6.0.0-1" # for apt-based platforms, use a `6.0.0-1` format on yum-based platforms
 datadog_config:
