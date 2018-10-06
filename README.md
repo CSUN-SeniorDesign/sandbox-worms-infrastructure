@@ -15,4 +15,4 @@
   - [How to deploy a new blog post](https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure/blob/master/content/Project%201/runbook/Hugo-DeployBlogPost.md)
   - [Click Here to Download our Project 1 release](https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure/releases)
 
-- [ ]  Project 2  
+- [x]  Project 2  
