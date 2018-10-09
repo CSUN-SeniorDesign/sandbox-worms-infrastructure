@@ -1,50 +1,18 @@
 # sandbox-worms-infrastructure #
-Sandbox Worms infrastructure repo
 
-----------
-
-
-### Team websites: ###
-**Documentations:** https://docs.sandboxworms.me  
-**Blog website:** https://blog.sandboxworms.me  
-** System Diagram:** https://docs.sandboxworms.me/design/
-----------
-
-### Deliverables ###
+## Team websites: ##
+  
+**Documentations:** https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure/tree/master/content/Project%201  
+**Blog website:** https://www.sandboxworms.me  
+**System Diagram:** https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure/blob/master/static/img/Project1.pdf
 
 
+- [x] [Project 0](https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure/tree/master/content/Project%200)  
+- [x] [Project 1](https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure/tree/master/content/Project%201)  
+  - [AWS setup	and services setup (EC2, VPC, Route53, etc)](https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure/blob/master/content/Project%201/design/overall_design.md)
+  - [AWS service diagram showing each aspect of the infrastructure](https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure/blob/master/static/img/Project1.pdf)
+  - [How to write a blog post](https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure/blob/master/content/Project%201/runbook/Hugo-AddPost.md)
+  - [How to deploy a new blog post](https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure/blob/master/content/Project%201/runbook/Hugo-DeployBlogPost.md)
+  - [Click Here to Download our Project 1 release](https://github.com/CSUN-SeniorDesign/sandbox-worms-infrastructure/releases)
 
-- [x] Build a Team (T)
-- [x] Github setup
-- [x] Github Pull Request/Peer Review Workflow
-- [x] AWS Account
-- [ ] AWS Educate for all Team Members
-- [ ] Git for Student
-- [x] Slack
-- [x] Purchase a Domain : sandboxworms.me
-- [x] Setup AWS Virtual Private Cloud
-- [x] Setup a Web Server on AWS Elastic Compute Cloud (EC2)
-	- [x] You also need to think of a secure way to allow all users to access your machine while not
-sharing credentials. 
-- [x] AWS Route53
-- [x] Setup your Blog
-- [x] Generate TLS Certificates
-- [ ] AWS Secret Store
-- [x] Deploy your blog
-- [x] Documentations : 
-	- [x] AWS Account setup
-	- [x] AWS services setup
-		- [x] EC2
-		- [x] VPC 
-		- [x] Subnet
-		- [x] Route 53
-		- [x] Security Groups
-	- [x] VM Setup
-		- Services Installed
-		- Firewall Exceptions
-		- Apache Documentations (config file)
-		- SSL Documentations (config file)
-		- User Authentication
-	- [x] AWS service diagram showing each aspect of the infrastructure
-	- [x] How to write a blog post
-	- [x] How to deploy a new blog post
+- [x]  Project 2  

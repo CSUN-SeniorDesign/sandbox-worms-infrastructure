@@ -1,5 +1,4 @@
 data "aws_vpc" "selected" {
-  #id = "${var.vpc_id}"
   filter {
     name = "tag:Name"
     values = ["Project 0"]
@@ -17,9 +16,9 @@ data "aws_security_group" "ALBSG" {
 
 resource "aws_iam_server_certificate" "sandboxwormscert" {
   name      = "sandboxwormscert"
-  certificate_body = "${file("certificates/www_sandboxworms_me.crt")}"
-  private_key      = "${file("certificates/sandboxwormsKey.key")}"
-  certificate_chain = "${file("certificates/www_sandboxworms_me.pem")}"
+  certificate_body = "${file("certificates/cert.crt")}"
+  private_key      = "${file("certificates/privkey.key")}"
+  certificate_chain = "${file("certificates/chain.pem")}"
 }
 
 # APPLICATION LOAD BALANCER
@@ -39,13 +38,13 @@ resource "aws_alb" "sandbox-ALB" {
 resource "aws_lb_target_group" "sandbox-target" {
   name     = "sandbox-target"
   port     = 80
-  protocol = "HTTPS"
+  protocol = "HTTP"
   vpc_id   = "${data.aws_vpc.selected.id}"
   health_check {
                 path = "/index.html"
                 port = "80"
                 protocol = "HTTP"
-                healthy_threshold = 2
+                healthy_threshold = 3
                 unhealthy_threshold = 2
                 interval = 5
                 timeout = 4
@@ -55,7 +54,7 @@ resource "aws_lb_target_group" "sandbox-target" {
 }
 
 
-
+/*
 resource "aws_alb_target_group_attachment" "web02-assoc" {
   target_group_arn = "${aws_lb_target_group.sandbox-target.arn}"
   target_id        = "${aws_instance.web02.id}"
@@ -66,7 +65,7 @@ resource "aws_alb_target_group_attachment" "web01-assoc" {
   target_id        = "${aws_instance.web01.id}"
   port             = 80
 }
-
+*/
 
 
 # LISTENERS
@@ -82,13 +81,7 @@ resource "aws_alb_listener" "alb_front_https" {
 		type			=	"forward"
 	}
 }
-/*
-resource "aws_lb_listener_certificate" "www_sandboxworms_me" {
-  listener_arn    = "${aws_alb_listener.alb_front_https.arn}"
-  certificate_arn = "${aws_iam_server_certificate.sandboxwormscert.arn}"
-}*/
-
-resource "aws_alb_listener" "alb-listener" {
+resource "aws_alb_listener" "alb-front-redirect" {
 	load_balancer_arn	=	"${aws_alb.sandbox-ALB.arn}"
 	port			=	"80"
 	protocol		=	"HTTP"
