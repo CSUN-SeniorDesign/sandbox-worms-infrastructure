@@ -1,28 +1,12 @@
+#===================CLUSTER==================
 resource "aws_ecs_cluster" "SBW-terraform-cluster" {
   name = "SBW-terraform-cluster"
 }
 
-
+#===================TASK DEFINITION==================
 resource "aws_ecs_task_definition" "cluster-task" {
   family                = "cluster-task"
   container_definitions = "${file("task-definitions/service.json")}"
-  
-/*  container_definitions = <<DEFINITION
-[
-  {
-    "cpu": 128,
-    "environment": [{
-      "name": "SECRET",
-      "value": "KEY"
-    }],
-    "essential": true,
-    "image": "mongo:latest",
-    "memory": 128,
-    "memoryReservation": 64,
-    "name": "mongodb"
-  }
-]
-DEFINITION*/
   
   placement_constraints {
     type       = "memberOf"
@@ -33,7 +17,7 @@ DEFINITION*/
   execution_role_arn	=	"arn:aws:iam::429784283093:role/ecsTaskExecutionRole"  
 }
 
-
+#===================SERVICE==================
 resource "aws_ecs_service" "SBW-Cluster-ALB" {
   name            = "SBW-Cluster-ALB"
   cluster         = "${aws_ecs_cluster.SBW-terraform-cluster.id}"
@@ -52,3 +36,10 @@ resource "aws_ecs_service" "SBW-Cluster-ALB" {
     expression = "attribute:ecs.availability-zone in [us-east-1a, us-east-1b]"
   }
 }
+
+#===================ECR REPO==================
+/*
+resource "aws_ecr_repository" "SBW-repo" {
+  name = "SBW-repo"
+}
+*/
