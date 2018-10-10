@@ -1,3 +1,7 @@
+data "aws_ecs_task_definition" "cluster-task" {
+  task_definition = "${aws_ecs_task_definition.cluster-task.family}"
+}
+
 #===================CLUSTER==================
 resource "aws_ecs_cluster" "SBW-terraform-cluster" {
   name = "SBW-terraform-cluster"
@@ -13,7 +17,8 @@ resource "aws_ecs_task_definition" "cluster-task" {
     expression = "attribute:ecs.availability-zone in [us-east-1a, us-east-1b]"
   }
   
-  task_role_arn			=	"arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
+#  task_role_arn			=	"arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
+  
   execution_role_arn	=	"arn:aws:iam::429784283093:role/ecsTaskExecutionRole"  
 }
 
@@ -21,7 +26,7 @@ resource "aws_ecs_task_definition" "cluster-task" {
 resource "aws_ecs_service" "SBW-Cluster-ALB" {
   name            = "SBW-Cluster-ALB"
   cluster         = "${aws_ecs_cluster.SBW-terraform-cluster.id}"
-  task_definition = "${aws_ecs_task_definition.cluster-task.arn}"
+  task_definition = "${aws_ecs_task_definition.cluster-task.family}:${max("${aws_ecs_task_definition.cluster-task.revision}", "${data.aws_ecs_task_definition.cluster-task.revision}")}"
   desired_count   = 3
   iam_role        = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
 
