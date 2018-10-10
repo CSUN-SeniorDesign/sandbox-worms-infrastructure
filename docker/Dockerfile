@@ -1,7 +1,9 @@
 FROM alpine:3.8
 ENV HUGO_VERSION 0.49
 ENV HUGO_BINARY hugo_extended_${HUGO_VERSION}_Linux-64bit 
-ENV PATH=/usr/local/hugo:${PATH}
+ENV HUGO_BUILD_DIR /hugo/public
+ENV HUGO_SRC /hugo
+
 RUN apk add --no-cache apache2=2.4.34-r0  \
     git=2.18.0-r0 \
 		bash \
@@ -23,9 +25,13 @@ RUN wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hug
     mv hugo /usr/bin/hugo && \
     rm ${HUGO_BINARY}.tar.gz LICENSE README.md && \
     rm -rf /tmp/* /var/cache/apk/*
-    
-RUN mkdir /usr/local/hugo/ && \
-    git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-blog.git /usr/local/hugo/
+
+RUN mkdir /hugo/ && \
+    git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-blog.git /hugo/
+
+RUN hugo -F -v --config ${HUGO_SRC}/config.toml -s ${HUGO_SRC}/ --baseURL="https://www.sandboxworms.me" -d  ${HUGO_BUILD_DIR} --enableGitInfo --verbose --debug
+
+
 #ENV HUGO_VERSION 0.25 
 #ENV HUGO_BINARY hugo_${HUGO_VERSION}_linux-64bit 
 #ENV PATH=/usr/local/hugo:${PATH}
