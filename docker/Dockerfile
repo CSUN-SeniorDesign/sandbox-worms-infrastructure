@@ -1,11 +1,13 @@
-FROM alpine:3.8
+#FROM alpine:3.8
+FROM httpd:2.4.35-alpine
 ENV HUGO_VERSION 0.49
 ENV HUGO_BINARY hugo_extended_${HUGO_VERSION}_Linux-64bit 
 ENV HUGO_BUILD_DIR /hugo/public
 ENV HUGO_SRC /hugo
-
-RUN apk add --no-cache apache2=2.4.34-r0  \
-    git=2.18.0-r0 \
+ENV DOCROOT /usr/local/apache2/htdocs/
+#ENV HTTPD_PREFIX /usr/local/apache2
+#ENV PATH $HTTPD_PREFIX/bin:$PATH
+RUN apk add --no-cache git=2.18.0-r0 \
 		bash \
 		build-base \
 		ca-certificates \
@@ -13,6 +15,7 @@ RUN apk add --no-cache apache2=2.4.34-r0  \
 		git \
 		libcurl \
     #hugo=0.39-r0 \
+    #apache2=2.4.34-r0  \
     libc6-compat \
     libxml2-dev \
     libxslt-dev \
@@ -30,6 +33,15 @@ RUN mkdir /hugo/ && \
     git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-blog.git /hugo/
 
 RUN hugo -F -v --config ${HUGO_SRC}/config.toml -s ${HUGO_SRC}/ --baseURL="https://www.sandboxworms.me" -d  ${HUGO_BUILD_DIR} --enableGitInfo --verbose --debug
+
+#use rsync to copy static html files. 
+RUN rsync -r ${HUGO_BUILD_DIR}/ ${DOCROOT} 
+#RUN sed -i 's/^#ServerName.*/ServerName localhost/' /etc/apache2/httpd.conf 
+COPY vhosts.conf /etc/apache2/conf.d/vhosts.conf
+#CMD [ "/usr/sbin/httpd", "-D", "FOREGROUND", "-f", "/etc/apache2/conf.d/vhosts.conf" ]
+#CMD [ "/usr/sbin/httpd", "-D", "FOREGROUND", "-f", "/etc/apache2/httpd.conf" ]
+#EXPOSE 80
+
 
 
 #ENV HUGO_VERSION 0.25 

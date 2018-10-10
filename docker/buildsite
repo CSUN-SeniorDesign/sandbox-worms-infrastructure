@@ -1,4 +1,0 @@
-#!/bin/bash
-rm blog.tar.gz
-hugo -F --config ~/repo/sandbox-worms-blog/config.toml -s ~/repo/sandbox-worms-blog/ -d ~/repo/sandbox-worms-blog/public
-tar -zcvf blog.tar.gz -C ~/repo/sandbox-worms-blog/public .
