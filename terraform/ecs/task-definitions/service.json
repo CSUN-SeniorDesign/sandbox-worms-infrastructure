@@ -1,0 +1,14 @@
+{
+        "name": "web",
+        "image": "429784283093.dkr.ecr.us-east-1.amazonaws.com/sandboxworms:latest",
+        "cpu": 128,
+        "memoryReservation": 128,
+        "portMappings": [
+          {
+            "hostPort": 80,
+            "containerPort": 80,
+            "protocol": "tcp"
+          }
+        ],
+        "essential": true
+}
