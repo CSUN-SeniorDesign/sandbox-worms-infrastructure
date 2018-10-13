@@ -32,7 +32,7 @@ RUN wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hug
 RUN mkdir /hugo/ && \
     git clone https://github.com/CSUN-SeniorDesign/sandbox-worms-blog.git /hugo/
 
-RUN hugo -F -v --config ${HUGO_SRC}/config.toml -s ${HUGO_SRC}/ --baseURL="https://www.sandboxworms.me" -d  ${HUGO_BUILD_DIR} --enableGitInfo --verbose --debug
+RUN hugo -F -v --config ${HUGO_SRC}/config.toml -s ${HUGO_SRC}/ -d  ${HUGO_BUILD_DIR} --enableGitInfo --verbose --debug
 
 #use rsync to copy static html files. 
 RUN rsync -r ${HUGO_BUILD_DIR}/ ${DOCROOT} 
