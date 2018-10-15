@@ -19,3 +19,7 @@ variable "aws_secret_key" {}
 variable "sandboxworms_group" {
   default = "Group_Members"
 }
+
+variable "john" {
+  default = "john"
+}

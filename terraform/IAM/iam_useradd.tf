@@ -21,6 +21,7 @@ resource "aws_iam_user" "yerden_p1" {
 }
 
 
+
 #Create Group
 resource "aws_iam_group" "GroupMembers"{
 	name = "${var.sandboxworms_group}"
@@ -41,7 +42,8 @@ resource "aws_iam_group_membership" "GroupMembers"{
 				"${aws_iam_user.mark_p1.name}",
 				"${aws_iam_user.nick_p1.name}",
 				"${aws_iam_user.john_p1.name}",
-				"${aws_iam_user.aubrey_p1.name}"]
+				"${aws_iam_user.aubrey_p1.name}",
+				"${var.john}"]
 	group = "${aws_iam_group.GroupMembers.id}"
 
 }
