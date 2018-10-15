@@ -66,6 +66,38 @@ resource "aws_iam_policy" "CCI_policy_GET" {
                 "arn:aws:s3:::sandboxworms-packages-92618",
                 "arn:aws:s3:::sandboxworms-packages-92618/*"
             ]
+}]
+}
+EOF
+}
+
+
+resource "aws_iam_policy" "CCI_policy_ECR_manage" {
+  name        = "CCI_policy_ECR_manage"
+  path        = "/"
+  description = "Policy for managing the ECR"
+
+  policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [{
+        "Effect": "Allow",
+        "Action": [
+            "ecr:GetAuthorizationToken",
+            "ecr:BatchCheckLayerAvailability",
+            "ecr:GetDownloadUrlForLayer",
+            "ecr:GetRepositoryPolicy",
+            "ecr:DescribeRepositories",
+            "ecr:ListImages",
+            "ecr:DescribeImages",
+            "ecr:BatchGetImage",
+            "ecr:InitiateLayerUpload",
+            "ecr:UploadLayerPart",
+            "ecr:CompleteLayerUpload",
+            "ecr:PutImage"
+        ],
+        "Resource": "*"
+    }]
 }
 EOF
 }
@@ -211,4 +243,10 @@ resource "aws_iam_role_policy_attachment" "instance_get" {
 resource "aws_iam_group_policy_attachment" "CCI_group_attach" {
   group	 = "${aws_iam_group.circle-ci-group.id}"
   policy_arn = "${aws_iam_policy.CCI_policy_PUT.arn}"
+}
+
+
+resource "aws_iam_group_policy_attachment" "CCI_ECR_attach" {
+  group	 = "${aws_iam_group.circle-ci-group.id}"
+  policy_arn = "${aws_iam_policy.CCI_policy_ECR_manage.arn}"
 }

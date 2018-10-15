@@ -7,7 +7,7 @@ resource "aws_kms_key" "tf_tar_enc_key" {
   tags {
     Origin = "Terraform"
   }
-}
+
 policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -29,7 +29,7 @@ policy = <<EOF
   ]
 }
 EOF
-
+}
 /*===================S3 BUCKET===================*/
 resource "aws_s3_bucket" "sandboxworms-packages-92618" {
   bucket = "sandboxworms-packages-92618"
