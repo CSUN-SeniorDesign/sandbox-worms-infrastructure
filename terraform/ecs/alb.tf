@@ -46,3 +46,68 @@ resource "aws_alb_listener_rule" "sbw-forward-containers" {
         values = ["www.sandboxworms.me"]
     }
 }
+
+resource "aws_alb_listener_rule" "sbw-forward-nowww" {
+    listener_arn = "${data.aws_alb_listener.sbw-alb-listener.arn}"
+    priority = 99
+    action {
+        type = "forward"
+        target_group_arn = "${aws_alb_target_group.sbw-ecs-target-group.arn}"
+    }
+    condition {
+        field = "host-header"
+        values = ["sandboxworms.me"]
+    }
+}
+
+resource "aws_alb_listener_rule" "sbw-forward-blog" {
+    listener_arn = "${data.aws_alb_listener.sbw-alb-listener.arn}"
+    priority = 99
+    action {
+        type = "forward"
+        target_group_arn = "${aws_alb_target_group.sbw-ecs-target-group.arn}"
+    }
+    condition {
+        field = "host-header"
+        values = ["blog.sandboxworms.me"]
+    }
+}
+
+resource "aws_alb_listener_rule" "sbw-forward-staging" {
+    listener_arn = "${data.aws_alb_listener.sbw-alb-listener.arn}"
+    priority = 99
+    action {
+        type = "forward"
+        target_group_arn = "${aws_alb_target_group.sbw-ecs-target-group.arn}"
+    }
+    condition {
+        field = "host-header"
+        values = ["staging.sandboxworms.me"]
+    }
+}
+
+resource "aws_alb_listener_rule" "sbw-forward-stagingwww" {
+    listener_arn = "${data.aws_alb_listener.sbw-alb-listener.arn}"
+    priority = 99
+    action {
+        type = "forward"
+        target_group_arn = "${aws_alb_target_group.sbw-ecs-target-group.arn}"
+    }
+    condition {
+        field = "host-header"
+        values = ["www.staging.sandboxworms.me"]
+    }
+}
+
+resource "aws_alb_listener_rule" "sbw-forward-blog-staging" {
+    listener_arn = "${data.aws_alb_listener.sbw-alb-listener.arn}"
+    priority = 99
+    action {
+        type = "forward"
+        target_group_arn = "${aws_alb_target_group.sbw-ecs-target-group.arn}"
+    }
+    condition {
+        field = "host-header"
+        values = ["blog.staging.sandboxworms.me"]
+    }
+}
