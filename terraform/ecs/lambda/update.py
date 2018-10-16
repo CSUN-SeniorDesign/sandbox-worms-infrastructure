@@ -1,3 +1,39 @@
+
+
+import boto3
+import botocore
+import pprint
+import os
+
+
+def lambda_handler(event, context):
+    ecr_client = boto3.client('ecr')
+    s3 = boto3.resource('s3')
+    object = s3.Object('sandboxworms-packages-92618','staging/stagebuild.txt')
+    response = object.get()
+    imagesha=object.get()['Body'].read().decode('utf-8').rstrip("\n")
+    print (imagesha)
+   
+    imagetotag = ecr_client.batch_get_image(
+        registryId='429784283093',
+        repositoryName='sandboxworms',
+        imageIds=[
+            {
+                'imageTag': imagesha
+            },
+        ],
+    )
+    manifest=imagetotag
+    print (manifest)   
+    
+    response = ecr_client.put_image(
+        registryId='429784283093',
+        repositoryName='sandboxworms',
+        imageManifest=manifest['images'][0]['imageManifest'],
+        imageTag='staging'
+    )    
+   
+-----------------------------------------
 import boto3
 import pprint
 import os
