@@ -6,8 +6,8 @@ resource "aws_ecs_service" "sbw-ecs-service-production" {
   	desired_count   = 2
 
   	load_balancer {
-    	target_group_arn  = "${aws_alb_target_group.sbw-ecs-target-group.arn}"
+    	target_group_arn  = "${aws_alb_target_group.sbw-ecs-target-group-production.arn}"
     	container_port    = 80
-    	container_name    = "sbw-frontend"
+    	container_name    = "sbw-frontend-production"
 	}
 }

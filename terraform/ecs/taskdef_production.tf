@@ -6,11 +6,12 @@ data "aws_ecs_task_definition" "sbw-task-production" {
 resource "aws_ecs_task_definition" "sbw-task-production" {
     family                = "sbw-task-production"
     network_mode          = "bridge"
+	task_role_arn 		  = "arn:aws:iam::429784283093:role/ecsTaskExecutionRole"
     container_definitions = <<DEFINITION
 [
   {
-    "name": "sbw-frontend",
-    "image": "429784283093.dkr.ecr.us-east-1.amazonaws.com/sandboxworms:production",
+    "name": "sbw-frontend-production",
+    "image": "429784283093.dkr.ecr.us-east-1.amazonaws.com/sandboxworms:latest",
     "essential": true,
     "portMappings": [
       {
