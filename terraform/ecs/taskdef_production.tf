@@ -11,7 +11,7 @@ resource "aws_ecs_task_definition" "sbw-task-production" {
 [
   {
     "name": "sbw-frontend-production",
-    "image": "429784283093.dkr.ecr.us-east-1.amazonaws.com/sandboxworms:latest",
+    "image": "429784283093.dkr.ecr.us-east-1.amazonaws.com/sandboxworms:production",
     "essential": true,
     "portMappings": [
       {

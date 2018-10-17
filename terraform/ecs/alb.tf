@@ -83,7 +83,7 @@ resource "aws_alb_listener_rule" "sbw-forward-containers" {
     priority = 99
     action {
         type = "forward"
-        target_group_arn = "${aws_alb_target_group.sbw-ecs-target-group.arn}"
+        target_group_arn = "${aws_alb_target_group.sbw-ecs-target-group-production.arn}"
     }
     condition {
         field = "host-header"
