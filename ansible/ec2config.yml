@@ -1,6 +1,7 @@
 ---
 #Setup LAMP Stack
 - hosts: tag_Type_WebServer
+  gather_facts: no
   tasks:
     - name: install Apache
       become: yes
@@ -13,6 +14,7 @@
       with_items:
         - httpd
 - hosts: all
+  gather_facts: no
   tasks:
     - name: add authorized keys
       authorized_key:
@@ -20,7 +22,6 @@
         state: present
         key: "{{ item }}"
       with_items:
-        - https://github.com/anigoza-card.keys
         - https://github.com/aubreynigoza.keys
         - https://github.com/nky9514.keys
         - https://github.com/jpvinuya.keys

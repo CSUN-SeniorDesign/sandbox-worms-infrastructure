@@ -15,6 +15,7 @@
 #     executable: /bin/bash
 #Deploy blog
 - hosts: tag_Type_WebServer
+  gather_facts: False
   tasks:  
     - name: deploy blog
       become: yes

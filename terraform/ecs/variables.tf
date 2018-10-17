@@ -16,10 +16,16 @@ variable "region" {
 variable "aws_access_key" {}
 
 variable "aws_secret_key" {}
-variable "sandboxworms_group" {
-  default = "Group_Members"
+variable "aws_key_name" {
+  default = "proj0_aubrey"
+}
+variable "ecs_ami" {
+  default = "ami-0b9a214f40c38d5eb"
+}
+variable "ecs_instance_type" {
+  default = "t2.micro"
 }
 
-variable "john" {
-  default = "john"
+variable "ecs_cluster" {
+  default = "sbw-ecs-cluster"
 }
