@@ -19,3 +19,4 @@ blog.tar.gz
 cert.crt
 chain.pem
 privkey.key
+*.stackdump
