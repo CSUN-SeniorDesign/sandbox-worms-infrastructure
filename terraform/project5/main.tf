@@ -52,14 +52,14 @@ resource "aws_s3_bucket" "proj5bucket" {
       days = 90
     }
   }
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        kms_master_key_id = "${aws_kms_key.proj5_bucket_key.arn}"
-        sse_algorithm     = "aws:kms"
-      }
-    }
-  }
+ # server_side_encryption_configuration {
+  #  rule {
+   #   apply_server_side_encryption_by_default {
+    #    kms_master_key_id = "${aws_kms_key.proj5_bucket_key.arn}"
+     #   sse_algorithm     = "aws:kms"
+      #}
+    #}
+ # }
   
   tags {
     Name        = "sandboxworms-proj5-102018"
